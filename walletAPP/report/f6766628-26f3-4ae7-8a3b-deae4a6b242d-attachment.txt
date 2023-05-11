@@ -1,0 +1,1 @@
+INFO     walletAPP.common.log_util:test_runner_file.py:382 PIX提现响应数据：{'errorCode': 101601, 'code': 500, 'data': None, 'message': "The withdraw amount can't be lower than R$0.50", 'requestId': 'f60547e1-9e15-40a2-99a3-62d0dc903c7d'}

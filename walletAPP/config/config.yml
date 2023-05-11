@@ -1,0 +1,152 @@
+urls:
+    prod_url: 'https://wallet-api.pagsmile.com'
+    dev_url: 'https://dev-wallet.pagsmile.com'
+
+paths:
+    #登录次数接口
+    logintimes_path: '/api/v1/user/loginTimes'
+    #登录接口
+    login_path: '/api/v1/user/loginPassword'
+    #账单列表页接口
+    history_path: '/api/v1/transaction/list'
+    #账单详情接口
+    transactiondetail_path: '/api/v1/transaction/detail'
+    #银行列表页接口
+    banklist_path: '/api/v1/user/bankList'
+    #个人信息接口
+    profile_path: '/api/v1/user_info/profile'
+    #渠道列表接口
+    channellist_path: '/api/v1/conf/channelList'
+    #物料接口
+    good_path: '/api/v2/goods/list'
+    #添加银行账户接口
+    addbank_path: '/api/v2/meta/code'
+    #添加银行账户接口
+    confirmbankinfo_path: '/api/v1/user/addBankInfo'
+    #删除银行账户接口
+    deletebankinfo_path: '/api/v1/user/deleteBankInfo'
+    #保存个人信息接口
+    saveprofile_path: '/api/v2/wallet/user/profile_save'
+    #调用短信平台接口
+    sendsms_path: '/api/v2/wallet/sms_code/send'
+    #选择渠道接口
+    channel_path: '/api/v1/withdraw/info'
+    #验证支付次数接口
+    paytimes_path: '/api/v1/wallet/payTimes'
+    #pix提现接口
+    pixdirect_path: '/api/v1/withdraw/pixdirect'
+    #重置支付密码接口
+    resetwalletpwd_path: '/api/v1/wallet/resetPassword'
+    #重置登录密码接口
+    resetuserpwd_path: '/api/v1/user/resetPassword'
+    #注册登录接口
+    register_path: '/api/v1/user/login'
+    #设置登录密码接口
+    setpassword_path: '/api/v1/user/setPassword'
+    #注册编辑个人信息接口
+    addprofile_path: '/api/v1/user_info/add_profile'
+
+head:
+    headers:
+        'content-type': 'application/json'
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1'
+
+data:
+    logintimes:
+        'json':
+            "areaCode": "86"
+            "phone": "15848900589"
+    login:
+        'json':
+            "areaCode": "86"
+            "bonusCode": ""
+            "phone": "15848900589"
+            "captchaId": ""
+            "code": ""
+            "password": "08b798781a80f134c8efb49b89f260b7"
+    history:
+        'payload':
+            "date": "2023-05"
+            "transactionStatus": "1"
+            "transactionType": "1"
+    channellist:
+        'json':
+            "channelType": 1
+    addbank:
+        'json':
+            "code_types": [2]
+    confirmbankinfo:
+        'json':
+            "accountDigit": 1
+            "accountNumber": "214124124"
+            # 1 - checking, 2 - saving
+            "accountType": 2
+            "agency": "2412"
+            "bankCode": "241"
+            "beneficiaryName": "GUILHERME ALVES DE SOUZA"
+            "documentId": "36855571816"
+    saveprofile:
+        'json1':
+            "new_cep": "98765432"
+        'json2':
+            "new_email": "jiafeng@xcloudgame.com"
+    sendsms:
+        'json':
+            "area_code": "86"
+            "phone": "15000000000"
+            "platform": 1
+            # 7 - change_password, 8 - register
+            "scene": 7
+    channel:
+        'payload1':
+            "channel": "pix"
+        'payload2':
+            "channel": "bank_transfer"
+    pixdirect:
+        # 设置提现金额小于0.50，报错：The withdraw amount can't be lower than R$0.50
+        'pass':
+            "amount": 0.01
+            "currency": "BRL"
+            # 1 - CNPJ,  2 - CPF, 3 - EVP,  4 - PHONE, 5 - EMAIL
+            "pixType": 3
+            "pixVal": "f5d9b9d8-b449-49d8-837d-19654e9a639a"
+            "password": "0f1df8ad4082ddd083cb5c269019c0ed"
+        # 设置支付密码错误，报错：The password or account is incorrect. Please try again.
+        'fail':
+            "amount": 0.50
+            "currency": "BRL"
+            # 1 - CNPJ,  2 - CPF, 3 - EVP,  4 -PHONE, 5 - EMAIL
+            "pixType": 3
+            "pixVal": "f5d9b9d8-b449-49d8-837d-19654e9a639a"
+            "password": "985e03513cbf9c160d62cc0d46d98b26"
+    resetwalletpwd:
+        'json':
+            "password": "0f1df8ad4082ddd083cb5c269019c0ed"
+            "confirmPassword": "0f1df8ad4082ddd083cb5c269019c0ed"
+            "oldPassword": "0f1df8ad4082ddd083cb5c269019c0ed"
+    resetuserpwd:
+        'json':
+            "password": "08b798781a80f134c8efb49b89f260b7"
+            "confirmPassword": "08b798781a80f134c8efb49b89f260b7"
+            "oldPassword": "08b798781a80f134c8efb49b89f260b7"
+    register:
+        'json':
+            "areaCode": "86"
+            "bonusCode": ""
+            "phone": ""
+            "code": ""
+            "platform": 1
+            "scene": 8
+            "source": ""
+    setpassword:
+        'json':
+            "password": "08b798781a80f134c8efb49b89f260b7"
+            "confirmPassword": "08b798781a80f134c8efb49b89f260b7"
+    addprofile:
+        'json':
+            "documentId": "36855571816"
+            "email": "jiafeng@xcloudgame.com"
+            "documentType": "1"
+            "name": "jiafeng"
+            "cep": "12345678"
+            "regAgreementStatus": 1

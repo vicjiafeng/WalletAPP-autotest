@@ -1,0 +1,1 @@
+INFO     walletAPP.common.log_util:test_runner_file.py:437 重置登录密码响应数据：{'errorCode': 0, 'code': 200, 'data': None, 'message': 'success', 'requestId': 'ffc4d94b-4584-4325-81f9-7661c159d27d'}

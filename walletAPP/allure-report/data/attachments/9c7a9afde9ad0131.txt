@@ -1,0 +1,1 @@
+INFO     walletAPP.common.log_util:test_runner_file.py:288 更新个人信息响应数据：{'code': 200, 'message': 'OK'}

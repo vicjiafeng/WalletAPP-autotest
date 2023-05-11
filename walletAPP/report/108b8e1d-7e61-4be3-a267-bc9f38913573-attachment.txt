@@ -1,0 +1,1 @@
+INFO     walletAPP.common.log_util:test_runner_file.py:409 重置支付密码响应数据：{'errorCode': 0, 'code': 200, 'data': None, 'message': 'success', 'requestId': '05c60dc1-8d5a-4d40-b55f-2d776bb8911c'}

@@ -1,0 +1,1 @@
+INFO     walletAPP.common.log_util:test_runner_file.py:334 渠道列表响应数据：{'errorCode': 0, 'code': 200, 'data': {'bankList': [], 'balance': {'currency': 'BRL', 'amount': '16.5'}, 'fee': '0.3', 'amount_max': '100', 'amount_min': '0.5', 'remaining_daily': ''}, 'message': 'success', 'requestId': '0f223937-a353-49e7-a18c-8d87ba94ae6c'}

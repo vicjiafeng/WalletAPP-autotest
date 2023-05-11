@@ -1,0 +1,1 @@
+INFO     walletAPP.common.log_util:test_runner_file.py:34 登录次数统计响应数据：{'errorCode': 0, 'code': 200, 'data': {'times': 0}, 'message': 'success', 'requestId': 'b2090dec-4e5b-4123-931c-778e91df4c30'}

@@ -1,0 +1,1 @@
+INFO     walletAPP.common.log_util:test_runner_file.py:191 请求银行账户列表页响应数据：{'errorCode': 0, 'code': 200, 'data': [], 'message': 'success', 'requestId': 'b5b3ea74-4b64-4f18-b6a5-a158c6484d26'}

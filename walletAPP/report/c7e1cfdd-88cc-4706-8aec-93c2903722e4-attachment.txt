@@ -1,0 +1,1 @@
+INFO     walletAPP.common.log_util:test_runner_file.py:264 删除银行账户响应数据：{'errorCode': 0, 'code': 200, 'data': '', 'message': 'success', 'requestId': '56c1b9d7-f0c1-446d-9a2b-a7ae15581bd4'}

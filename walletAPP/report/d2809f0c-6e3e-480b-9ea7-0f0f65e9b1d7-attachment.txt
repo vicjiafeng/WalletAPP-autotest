@@ -1,0 +1,1 @@
+INFO     walletAPP.common.log_util:test_runner_file.py:239 新增银行账户响应数据：{'errorCode': 0, 'code': 200, 'data': '', 'message': 'success', 'requestId': '4d2897e8-614b-4cf2-a08b-e7728b38b0e6'}

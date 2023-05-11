@@ -1,0 +1,1 @@
+INFO     walletAPP.common.log_util:test_runner_file.py:356 每日提现次数限制统计接口响应数据：{'errorCode': 0, 'code': 200, 'data': 0, 'message': 'success', 'requestId': '849e521a-414b-4b15-b855-06b256140e26'}

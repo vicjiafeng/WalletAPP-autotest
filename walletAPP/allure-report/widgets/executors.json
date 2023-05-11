@@ -1,0 +1,1 @@
+[{"name":"Jenkins","type":"jenkins","url":"http://localhost:9010/","buildOrder":71,"buildName":"walletAPP-Pytest-Allure #71","buildUrl":"http://localhost:9010/job/walletAPP-autotest/71/","reportName":"AllureReport","reportUrl":"http://localhost:9010/job/walletAPP-autotest/71/allure"}]
