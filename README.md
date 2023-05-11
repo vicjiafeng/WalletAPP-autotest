@@ -1,1 +1,0 @@
-# WalletAPP-autotest
