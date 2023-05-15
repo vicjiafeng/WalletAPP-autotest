@@ -38,6 +38,7 @@ class TestSuite1(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(login_times_response['message']))
+                raise
 
     @pytest.mark.run(order=2)
     @pytest.mark.beforeloginCase
@@ -65,6 +66,7 @@ class TestSuite1(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(login_response['message']))
+                raise
 
 @allure.feature("wallet客户端数据展示")
 class TestSuite2(object):
@@ -94,7 +96,7 @@ class TestSuite2(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(profile_response['message']))
-
+                raise
     @pytest.mark.skip('no need')
     @pytest.mark.run(order=4)
     @pytest.mark.checkInfoCase
@@ -122,7 +124,7 @@ class TestSuite2(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(good_response['message']))
-
+                raise
     @pytest.mark.run(order=5)
     # 用户故事
     @allure.story('首页展示渠道列表页场景')
@@ -148,6 +150,7 @@ class TestSuite2(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(channel_list_response['message']))
+                raise
 
 @allure.feature("wallet客户端账单相关")
 class TestSuite3(object):
@@ -177,7 +180,7 @@ class TestSuite3(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(history_response['message']))
-
+                raise
     @pytest.mark.run(order=7)
     @pytest.mark.transactionCase
     # 用户故事
@@ -206,6 +209,7 @@ class TestSuite3(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(transaction_detail_response['message']))
+                raise
 
 @allure.feature("wallet客户端银行账户相关")
 class TestSuite4(object):
@@ -235,6 +239,7 @@ class TestSuite4(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(bank_list_response['message']))
+                raise
 
     @pytest.mark.run(order=9)
     @pytest.mark.bankInfoCase
@@ -263,6 +268,7 @@ class TestSuite4(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(add_bank_response['message']))
+                raise
 
     @pytest.mark.run(order=10)
     @pytest.mark.bankInfoCase
@@ -293,6 +299,7 @@ class TestSuite4(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(confirm_bankinfo_response['message']))
+                raise
 
     @pytest.mark.run(order=11)
     @pytest.mark.bankInfoCase
@@ -323,6 +330,7 @@ class TestSuite4(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(delete_bankinfo_response['message']))
+                raise
 
 @allure.feature("wallet客户端维护个人信息")
 class TestSuite5(object):
@@ -354,6 +362,7 @@ class TestSuite5(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(save_profile_response['message']))
+                raise
 
     @pytest.mark.run(order=13)
     @pytest.mark.personInfoCase
@@ -383,6 +392,7 @@ class TestSuite5(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(sms_send_response['message']))
+                raise
 
     @pytest.mark.run(order=14)
     @pytest.mark.personInfoCase
@@ -415,6 +425,7 @@ class TestSuite5(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(reset_login_pwd_response['message']))
+                raise
 
     @pytest.mark.run(order=15)
     @allure.story('用户重置支付密码场景')
@@ -446,6 +457,8 @@ class TestSuite5(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(reset_wallet_pwd_response['message']))
+                raise
+
 @allure.feature("wallet客户端提现")
 class TestSuite6(object):
     @pytest.mark.run(order=16)
@@ -474,6 +487,7 @@ class TestSuite6(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(channel_response['message']))
+                raise
 
     @pytest.mark.run(order=17)
     @pytest.mark.withdrawCase
@@ -501,6 +515,7 @@ class TestSuite6(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(pay_times_response['message']))
+                raise
 
     @pytest.mark.run(order=18)
     @pytest.mark.withdrawCase
@@ -532,6 +547,7 @@ class TestSuite6(object):
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("断言失败，实际返回message：{}".format(pix_direct_response['message']))
+                raise
 
 
 if __name__ == '__main__':
