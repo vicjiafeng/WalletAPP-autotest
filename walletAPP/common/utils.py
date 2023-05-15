@@ -28,6 +28,7 @@ def login_request():                                                            
 token = login_request()['data']['token']
 # 获取登录态后测试用例集
 class TestCase01(object):
+
     def setup(self):
         print('获取登录态后执行测试用例')
 
@@ -102,7 +103,7 @@ class TestCase01(object):
         json_dict = json.loads(res)
         return json_dict
 
-    def confirmbankinfo_request(self):                                               # 提交新增银行
+    def confirmbankinfo_request(self):                                                  # 提交新增银行
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['confirmbankinfo_path']
         authorization = token
         headers = {'authorization': authorization}

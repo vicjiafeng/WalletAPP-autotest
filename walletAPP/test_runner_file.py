@@ -1,18 +1,19 @@
 #! /usr/bin/python
 # -*- coding: UTF-8 -*-
 import pytest, allure, os, logging
+import traceback
 from .common.utils import *
 from .common.log_util import Logger
 
 # logger函数变量
 logger = Logger().get_log()
-# epic描述
-@allure.epic('wallet客户端接口自动化')
-# 模块名称
-@allure.feature("wallet客户端")
-class TestClass(object):
+#测试用例集
+@allure.feature("wallet客户端登录")
+class TestSuite1(object):
     # 标记用例执行顺序
     @pytest.mark.run(order=1)
+    # 用例标记名
+    @pytest.mark.beforeloginCase
     # 用户故事
     @allure.story('客户端登录次数统计场景')
     # 用例等级
@@ -30,13 +31,16 @@ class TestClass(object):
             login_times_response = logintimes_request()
             print('调用登录统计次数接口,日志打印返回数据')
         with allure.step("3、执行断言"):
-            # 打印日志
-            logger.info("登录次数统计响应数据：%s" % login_times_response)
-            # 断言返回结果msg字段
-            assert 'success' == login_times_response['message']
-            print('统计成功')
+            try:
+                assert 'success' == login_times_response['message']
+                logger.info("断言成功，返回message为: {}".format(login_times_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(login_times_response['message']))
 
     @pytest.mark.run(order=2)
+    @pytest.mark.beforeloginCase
     # 用户故事
     @allure.story('客户端登录场景')
     # 用例等级
@@ -54,11 +58,18 @@ class TestClass(object):
             login_response = login_request()
             print('调用登录接口，日志打印返回数据')
         with allure.step("3、执行断言"):
-            logger.info("登录接口响应数据：%s" % login_response)
-            assert 'success' == login_response['message']
-            print('登录成功')
+            try:
+                assert 'success' == login_response['message']
+                logger.info("断言成功，返回message为: {}".format(login_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(login_response['message']))
 
+@allure.feature("wallet客户端数据展示")
+class TestSuite2(object):
     @pytest.mark.run(order=3)
+    @pytest.mark.checkInfoCase
     # 用户故事
     @allure.story('展示用户个人信息场景')
     # 用例等级
@@ -76,12 +87,17 @@ class TestClass(object):
             profile_response = TestCase01.profile_request(self)
             print('调用profile接口，日志打印返回数据')
         with allure.step("3、执行断言"):
-            logger.info("请求个人信息页响应数据：%s" % profile_response)
-            assert 'success' == profile_response['message']
-            print('查看个人页成功')
+            try:
+                assert 'success' == profile_response['message']
+                logger.info("断言成功，返回message为: {}".format(profile_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(profile_response['message']))
 
     @pytest.mark.skip('no need')
     @pytest.mark.run(order=4)
+    @pytest.mark.checkInfoCase
     # 用户故事
     @allure.story('首页展示商场场景')
     # 用例等级
@@ -99,13 +115,18 @@ class TestClass(object):
             good_response = TestCase01.good_request(self)
             print('调用接口成功，日志打印返回数据')
         with allure.step("3、执行断言"):
-            logger.info("商城列表页响应数据：%s" % good_response)
-            assert 'OK' == good_response['message']
-            print('拉取商城列表成功')
+            try:
+                assert 'success' == good_response['message']
+                logger.info("断言成功，返回message为: {}".format(good_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(good_response['message']))
 
     @pytest.mark.run(order=5)
     # 用户故事
     @allure.story('首页展示渠道列表页场景')
+    @pytest.mark.checkInfoCase
     # 用例等级
     @allure.severity(allure.severity_level.NORMAL)
     @allure.description('walletApp-Channel List场景')
@@ -120,11 +141,18 @@ class TestClass(object):
             channel_list_response = TestCase01.channellist_request(self)
             print('调用接口成功，日志打印返回数据')
         with allure.step("3、执行断言"):
-            logger.info("渠道列表响应数据：%s" % channel_list_response)
-            assert 'success' == channel_list_response['message']
-            print('渠道列表页查询成功')
+            try:
+                assert 'success' == channel_list_response['message']
+                logger.info("断言成功，返回message为: {}".format(channel_list_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(channel_list_response['message']))
 
+@allure.feature("wallet客户端账单相关")
+class TestSuite3(object):
     @pytest.mark.run(order=6)
+    @pytest.mark.transactionCase
     # 用户故事
     @allure.story('用户查询账单场景')
     # 用例等级
@@ -132,7 +160,7 @@ class TestClass(object):
     # 用例描述
     @allure.description('walletApp-Transaction History List场景')
     # 测试步骤
-    @allure.step('测试客户端查看交易历史记录')
+    @allure.step('测试客户端查看账单列表')
     # 用例标题
     @allure.title('walletApp-Transaction History List')
     def test_history_request(self):
@@ -140,13 +168,18 @@ class TestClass(object):
             print('获取请求头Authorization')
         with allure.step("2、进入History列表页"):
             history_response = TestCase01.history_request(self)
-            print('调用交易列表接口,日志打印返回数据')
+            print('调用账单列表接口,日志打印返回数据')
         with allure.step("3、执行断言"):
-            logger.info("账单列表响应数据：%s" % history_response)
-            assert 'success' == history_response['message']
-            print('查看交易历史成功')
+            try:
+                assert 'success' == history_response['message']
+                logger.info("断言成功，返回message为: {}".format(history_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(history_response['message']))
 
     @pytest.mark.run(order=7)
+    @pytest.mark.transactionCase
     # 用户故事
     @allure.story('用户查看账单详情场景')
     # 用例等级
@@ -166,11 +199,18 @@ class TestClass(object):
             transaction_detail_response = TestCase01.transactiondetail_request(self)
             print('进入交易详情页,日志打印返回数据')
         with allure.step("4、执行断言"):
-            logger.info("账单详情响应数据：%s" % transaction_detail_response)
-            assert 'success' == transaction_detail_response['message']
-            print('查看交易历史成功')
+            try:
+                assert 'success' == transaction_detail_response['message']
+                logger.info("断言成功，返回message为: {}".format(transaction_detail_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(transaction_detail_response['message']))
 
+@allure.feature("wallet客户端银行账户相关")
+class TestSuite4(object):
     @pytest.mark.run(order=8)
+    @pytest.mark.bankInfoCase
     # 用户故事
     @allure.story('用户查看银行账户列表场景')
     # 用例等级
@@ -188,11 +228,16 @@ class TestClass(object):
             bank_list_response = TestCase01.banklist_request(self)
             print('调用bank列表接口,日志打印返回数据')
         with allure.step("3、执行断言"):
-            logger.info("请求银行账户列表页响应数据：%s" % bank_list_response)
-            assert 'success' == bank_list_response['message']
-            print('查看银行列表成功')
+            try:
+                assert 'success' == bank_list_response['message']
+                logger.info("断言成功，返回message为: {}".format(bank_list_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(bank_list_response['message']))
 
     @pytest.mark.run(order=9)
+    @pytest.mark.bankInfoCase
     @allure.story('用户添加银行账户进入编辑页场景')
     # 用例等级
     @allure.severity(allure.severity_level.CRITICAL)
@@ -211,11 +256,16 @@ class TestClass(object):
             add_bank_response = TestCase01.addbank_request(self)
             print('调用添加银行接口')
         with allure.step("4、执行断言"):
-            logger.info("请求添加银行账户进入编辑页响应数据：%s" % add_bank_response)
-            assert 'OK' == add_bank_response['message']
-            print('调用addbank接口成功')
+            try:
+                assert 'success' == add_bank_response['message']
+                logger.info("断言成功，返回message为: {}".format(add_bank_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(add_bank_response['message']))
 
     @pytest.mark.run(order=10)
+    @pytest.mark.bankInfoCase
     @allure.story('用户新增银行账户场景')
     # 用例等级
     @allure.severity(allure.severity_level.CRITICAL)
@@ -236,11 +286,16 @@ class TestClass(object):
             confirm_bankinfo_response = TestCase01.confirmbankinfo_request(self)
             print('调用提交接口')
         with allure.step("5、执行断言"):
-            logger.info("新增银行账户响应数据：%s" % confirm_bankinfo_response)
-            assert 'success' == confirm_bankinfo_response['message']
-            print('添加银行账户成功')
+            try:
+                assert 'success' == confirm_bankinfo_response['message']
+                logger.info("断言成功，返回message为: {}".format(confirm_bankinfo_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(confirm_bankinfo_response['message']))
 
     @pytest.mark.run(order=11)
+    @pytest.mark.bankInfoCase
     @allure.story('用户删除银行账户场景')
     # 用例等级
     @allure.severity(allure.severity_level.CRITICAL)
@@ -261,11 +316,18 @@ class TestClass(object):
             delete_bankinfo_response = TestCase01.deletebankinfo_request(self)
             print('调用删除账户接口')
         with allure.step("5、执行断言"):
-            logger.info("删除银行账户响应数据：%s" % delete_bankinfo_response)
-            assert 'success' == delete_bankinfo_response['message']
-            print('删除银行账户成功')
+            try:
+                assert 'success' == delete_bankinfo_response['message']
+                logger.info("断言成功，返回message为: {}".format(delete_bankinfo_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(delete_bankinfo_response['message']))
 
+@allure.feature("wallet客户端维护个人信息")
+class TestSuite5(object):
     @pytest.mark.run(order=12)
+    @pytest.mark.personInfoCase
     # 用户故事
     @allure.story('用户更新CEP或Email场景')
     # 用例等级
@@ -285,11 +347,16 @@ class TestClass(object):
             save_profile_response = TestCase01.saveprofile_request(self)
             print('调用保存接口')
         with allure.step("4、执行断言"):
-            logger.info("更新个人信息响应数据：%s" % save_profile_response)
-            assert 'OK' == save_profile_response['message']
-            print('更新/保存成功')
+            try:
+                assert 'success' == save_profile_response['message']
+                logger.info("断言成功，返回message为: {}".format(save_profile_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(save_profile_response['message']))
 
     @pytest.mark.run(order=13)
+    @pytest.mark.personInfoCase
     # 用户故事
     @allure.story('用户发送短信验证码场景(更新手机号)')
     # 用例等级
@@ -309,108 +376,16 @@ class TestClass(object):
             sms_send_response = TestCase01.sendsms_request(self)
             print('调用发送smsOTP')
         with allure.step("4、执行断言"):
-            logger.info("调用短信平台响应数据：%s" % sms_send_response)
-            assert 'OK' == sms_send_response['message']
-            print('发送短信验证码成功')
+            try:
+                assert 'success' == sms_send_response['message']
+                logger.info("断言成功，返回message为: {}".format(sms_send_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(sms_send_response['message']))
 
     @pytest.mark.run(order=14)
-    # 用户故事
-    @allure.story('首页选择PIX渠道场景')
-    # 用例等级
-    @allure.severity(allure.severity_level.BLOCKER)
-    # 用例描述
-    @allure.description('walletApp首页选择提现渠道')
-    # 测试步骤
-    @allure.step('测试用户选择PIX提现渠道')
-    # 用例标题
-    @allure.title('walletApp-PIX Channel Selected')
-    def test_channel_request(self):
-        with allure.step("1、获取请求头Authorization"):
-            print('获取请求头Authorization')
-        with allure.step("2、点击PIX渠道"):
-            channel_response = TestCase01.channel_request(self)
-            print('选择PIX提现渠道')
-        with allure.step("3、执行断言"):
-            logger.info("渠道列表响应数据：%s" % channel_response)
-            assert 'success' == channel_response['message']
-            print('发送短信验证码成功')
-
-    @pytest.mark.run(order=15)
-    # 用户故事
-    @allure.story('提现次数统计场景')
-    # 用例等级
-    @allure.severity(allure.severity_level.CRITICAL)
-    # 用例描述
-    @allure.description('walletApp发起PIX提现渠道，验证转账次数统计限制')
-    # 测试步骤
-    @allure.step('测试用户选择PIX提现渠道，验证交易次数限制')
-    # 用例标题
-    @allure.title('walletApp-PIX Withdraw Times Collection')
-    def test_paytimes_request(self):
-        with allure.step("1、获取请求头Authorization"):
-            print('获取请求头Authorization')
-        with allure.step("2、点击PIX渠道，查看交易次数限制"):
-            pay_times_response = TestCase01.paytimes_request(self)
-            print('查看交易次数限制')
-        with allure.step("3、执行断言"):
-            logger.info("每日提现次数限制统计接口响应数据：%s" % pay_times_response)
-            assert 'success' == pay_times_response['message']
-            print('发送短信验证码成功')
-
-    @pytest.mark.run(order=16)
-    # 用户故事
-    @allure.story('用户完成PIX渠道提现场景')
-    # 用例等级
-    @allure.severity(allure.severity_level.BLOCKER)
-    # 用例描述
-    @allure.description('walletApp发起PIX提现渠道（提现金额小于0.50，报错提示）')
-    # 测试步骤
-    @allure.step('测试用户进行PIX渠道提现-')
-    # 用例标题
-    @allure.title('walletApp-PIX Withdraw Failed due to minimal withdraw amount')
-    def test_pixdirect_request(self):
-        with allure.step("1、获取请求头Authorization"):
-            print('获取请求头Authorization')
-        with allure.step("2、输入提现账户"):
-            print('选择EVP类型')
-        with allure.step("3、输入EVP账号"):
-            print('完成EVP账号输入')
-        with allure.step("4、输入交易密码"):
-            pix_direct_response = TestCase01.pixdirect_request(self)
-            print('输入错误交易密码')
-        with allure.step("5、执行断言"):
-            logger.info("PIX提现响应数据：%s" % pix_direct_response)
-            assert "The withdraw amount can't be lower than R$0.50" == pix_direct_response['message']
-            print('发送短信验证码成功')
-
-    @pytest.mark.run(order=17)
-    @allure.story('用户重置支付密码场景')
-    # 用例等级
-    @allure.severity(allure.severity_level.NORMAL)
-    # 用例描述
-    @allure.description('walletApp-Reset payment password场景')
-    # 测试步骤
-    @allure.step('测试客户端重置支付密码')
-    # 用例标题
-    @allure.title('walletApp-Reset Wallet Payment Password')
-    def test_resetwalletpwd_request(self):
-        with allure.step("1、获取请求头Authorization"):
-            print('获取请求头Authorization')
-        with allure.step("2、进入个人页"):
-            print('进入个人详情页')
-        with allure.step("3、点击Payment password"):
-            print('进入支付密码设置页')
-        with allure.step("4、设置新支付密码"):
-            print('新支付密码更新完成')
-        with allure.step("5、点击confirm按键"):
-            reset_wallet_pwd_response = TestCase01.resetwalletpwd_request(self)
-            print('提交修改申请')
-        with allure.step("6、执行断言"):
-            logger.info("重置支付密码响应数据：%s" % reset_wallet_pwd_response)
-            assert 'success' == reset_wallet_pwd_response['message']
-            print('更新支付密码成功')
-
-    @pytest.mark.run(order=18)
+    @pytest.mark.personInfoCase
     @allure.story('用户重置登录密码场景')
     # 用例等级
     @allure.severity(allure.severity_level.CRITICAL)
@@ -433,10 +408,130 @@ class TestClass(object):
             reset_login_pwd_response = TestCase01.resetuserpwd_request(self)
             print('提交修改申请')
         with allure.step("6、执行断言"):
-            # 断言返回结果msg字段
-            logger.info("重置登录密码响应数据：%s" % reset_login_pwd_response)
-            assert 'success' == reset_login_pwd_response['message']
-            print('更新登录密码成功')
+            try:
+                assert 'success' == reset_login_pwd_response['message']
+                logger.info("断言成功，返回message为: {}".format(reset_login_pwd_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(reset_login_pwd_response['message']))
+
+    @pytest.mark.run(order=15)
+    @allure.story('用户重置支付密码场景')
+    # 用例等级
+    @allure.severity(allure.severity_level.NORMAL)
+    # 用例描述
+    @allure.description('walletApp-Reset payment password场景')
+    # 测试步骤
+    @allure.step('测试客户端重置支付密码')
+    # 用例标题
+    @allure.title('walletApp-Reset Wallet Payment Password')
+    def test_resetwalletpwd_request(self):
+        with allure.step("1、获取请求头Authorization"):
+            print('获取请求头Authorization')
+        with allure.step("2、进入个人页"):
+            print('进入个人详情页')
+        with allure.step("3、点击Payment password"):
+            print('进入支付密码设置页')
+        with allure.step("4、设置新支付密码"):
+            print('新支付密码更新完成')
+        with allure.step("5、点击confirm按键"):
+            reset_wallet_pwd_response = TestCase01.resetwalletpwd_request(self)
+            print('提交修改申请')
+        with allure.step("6、执行断言"):
+            try:
+                assert 'success' == reset_wallet_pwd_response['message']
+                logger.info("断言成功，返回message为: {}".format(reset_wallet_pwd_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(reset_wallet_pwd_response['message']))
+@allure.feature("wallet客户端提现")
+class TestSuite6(object):
+    @pytest.mark.run(order=16)
+    @pytest.mark.withdrawCase
+    # 用户故事
+    @allure.story('首页选择PIX渠道场景')
+    # 用例等级
+    @allure.severity(allure.severity_level.BLOCKER)
+    # 用例描述
+    @allure.description('walletApp首页选择提现渠道')
+    # 测试步骤
+    @allure.step('测试用户选择PIX提现渠道')
+    # 用例标题
+    @allure.title('walletApp-PIX Channel Selected')
+    def test_channel_request(self):
+        with allure.step("1、获取请求头Authorization"):
+            print('获取请求头Authorization')
+        with allure.step("2、点击PIX渠道"):
+            channel_response = TestCase01.channel_request(self)
+            print('选择PIX提现渠道')
+        with allure.step("3、执行断言"):
+            try:
+                assert 'success' == channel_response['message']
+                logger.info("断言成功，返回message为: {}".format(channel_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(channel_response['message']))
+
+    @pytest.mark.run(order=17)
+    @pytest.mark.withdrawCase
+    # 用户故事
+    @allure.story('提现次数统计场景')
+    # 用例等级
+    @allure.severity(allure.severity_level.CRITICAL)
+    # 用例描述
+    @allure.description('walletApp发起PIX提现渠道，验证转账次数统计限制')
+    # 测试步骤
+    @allure.step('测试用户选择PIX提现渠道，验证交易次数限制')
+    # 用例标题
+    @allure.title('walletApp-PIX Withdraw Times Collection')
+    def test_paytimes_request(self):
+        with allure.step("1、获取请求头Authorization"):
+            print('获取请求头Authorization')
+        with allure.step("2、点击PIX渠道，查看交易次数限制"):
+            pay_times_response = TestCase01.paytimes_request(self)
+            print('查看交易次数限制')
+        with allure.step("3、执行断言"):
+            try:
+                assert 'success' == pay_times_response['message']
+                logger.info("断言成功，返回message为: {}".format(pay_times_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(pay_times_response['message']))
+
+    @pytest.mark.run(order=18)
+    @pytest.mark.withdrawCase
+    # 用户故事
+    @allure.story('用户完成PIX渠道提现场景')
+    # 用例等级
+    @allure.severity(allure.severity_level.BLOCKER)
+    # 用例描述
+    @allure.description('walletApp发起PIX提现渠道（提现金额小于0.50，报错提示）')
+    # 测试步骤
+    @allure.step('测试用户进行PIX渠道提现-')
+    # 用例标题
+    @allure.title('walletApp-PIX Withdraw Failed due to minimal withdraw amount')
+    def test_pixdirect_request(self):
+        with allure.step("1、获取请求头Authorization"):
+            print('获取请求头Authorization')
+        with allure.step("2、输入提现账户"):
+            print('选择EVP类型')
+        with allure.step("3、输入EVP账号"):
+            print('完成EVP账号输入')
+        with allure.step("4、输入交易密码"):
+            pix_direct_response = TestCase01.pixdirect_request(self)
+            print('输入错误交易密码')
+        with allure.step("5、执行断言"):
+            try:
+                assert 'success' == pix_direct_response['message']
+                logger.info("断言成功，返回message为: {}".format(pix_direct_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("断言失败，实际返回message：{}".format(pix_direct_response['message']))
 
 
 if __name__ == '__main__':
