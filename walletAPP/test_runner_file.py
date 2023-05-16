@@ -7,7 +7,8 @@ from .common.log_util import Logger
 
 # logger函数变量
 logger = Logger().get_log()
-#测试用例集
+
+#测试用例集合
 @allure.feature("wallet客户端登录")
 class TestSuite1(object):
     # 标记用例执行顺序
@@ -262,7 +263,7 @@ class TestSuite4(object):
             print('调用添加银行接口')
         with allure.step("4、执行断言"):
             try:
-                assert 'success' == add_bank_response['message']
+                assert 'OK' == add_bank_response['message']
                 logger.info("断言成功，返回message为: {}".format(add_bank_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
@@ -356,7 +357,7 @@ class TestSuite5(object):
             print('调用保存接口')
         with allure.step("4、执行断言"):
             try:
-                assert 'success' == save_profile_response['message']
+                assert 'OK' == save_profile_response['message']
                 logger.info("断言成功，返回message为: {}".format(save_profile_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
@@ -386,7 +387,7 @@ class TestSuite5(object):
             print('调用发送smsOTP')
         with allure.step("4、执行断言"):
             try:
-                assert 'success' == sms_send_response['message']
+                assert 'OK' == sms_send_response['message']
                 logger.info("断言成功，返回message为: {}".format(sms_send_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
@@ -541,7 +542,7 @@ class TestSuite6(object):
             print('输入错误交易密码')
         with allure.step("5、执行断言"):
             try:
-                assert 'success' == pix_direct_response['message']
+                assert "The withdraw amount can't be lower than R$0.50" == pix_direct_response['message']
                 logger.info("断言成功，返回message为: {}".format(pix_direct_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
