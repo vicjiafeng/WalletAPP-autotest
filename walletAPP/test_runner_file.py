@@ -34,11 +34,11 @@ class TestSuite1(object):
         with allure.step("3、执行断言"):
             try:
                 assert 'success' == login_times_response['message']
-                logger.info("断言成功，返回message为: {}".format(login_times_response['message']))
+                logger.info("测试用例：登录次数统计接口-断言成功，返回message为: {}".format(login_times_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(login_times_response['message']))
+                logger.exception("测试用例：登录次数统计接口-断言失败，实际返回message：{}".format(login_times_response['message']))
                 raise
 
     @pytest.mark.run(order=2)
@@ -62,11 +62,11 @@ class TestSuite1(object):
         with allure.step("3、执行断言"):
             try:
                 assert 'success' == login_response['message']
-                logger.info("断言成功，返回message为: {}".format(login_response['message']))
+                logger.info("测试用例：登录接口-断言成功，返回message为: {}".format(login_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(login_response['message']))
+                logger.exception("测试用例：登录接口-断言失败，实际返回message：{}".format(login_response['message']))
                 raise
 
 @allure.feature("wallet客户端数据展示")
@@ -92,11 +92,11 @@ class TestSuite2(object):
         with allure.step("3、执行断言"):
             try:
                 assert 'success' == profile_response['message']
-                logger.info("断言成功，返回message为: {}".format(profile_response['message']))
+                logger.info("测试用例：个人页接口-断言成功，返回message为: {}".format(profile_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(profile_response['message']))
+                logger.exception("测试用例：个人页接口-断言失败，实际返回message：{}".format(profile_response['message']))
                 raise
     @pytest.mark.skip('no need')
     @pytest.mark.run(order=4)
@@ -120,11 +120,11 @@ class TestSuite2(object):
         with allure.step("3、执行断言"):
             try:
                 assert 'success' == good_response['message']
-                logger.info("断言成功，返回message为: {}".format(good_response['message']))
+                logger.info("测试用例：商城列表接口-断言成功，返回message为: {}".format(good_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(good_response['message']))
+                logger.exception("测试用例：商城列表接口-断言失败，实际返回message：{}".format(good_response['message']))
                 raise
     @pytest.mark.run(order=5)
     # 用户故事
@@ -146,11 +146,11 @@ class TestSuite2(object):
         with allure.step("3、执行断言"):
             try:
                 assert 'success' == channel_list_response['message']
-                logger.info("断言成功，返回message为: {}".format(channel_list_response['message']))
+                logger.info("测试用例：渠道列表接口-断言成功，返回message为: {}".format(channel_list_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(channel_list_response['message']))
+                logger.exception("测试用例：渠道列表接口-断言失败，实际返回message：{}".format(channel_list_response['message']))
                 raise
 
 @allure.feature("wallet客户端账单相关")
@@ -176,11 +176,11 @@ class TestSuite3(object):
         with allure.step("3、执行断言"):
             try:
                 assert 'success' == history_response['message']
-                logger.info("断言成功，返回message为: {}".format(history_response['message']))
+                logger.info("测试用例：账单列表接口-断言成功，返回message为: {}".format(history_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(history_response['message']))
+                logger.exception("测试用例：账单列表接口-断言失败，实际返回message：{}".format(history_response['message']))
                 raise
     @pytest.mark.run(order=7)
     @pytest.mark.transactionCase
@@ -205,11 +205,11 @@ class TestSuite3(object):
         with allure.step("4、执行断言"):
             try:
                 assert 'success' == transaction_detail_response['message']
-                logger.info("断言成功，返回message为: {}".format(transaction_detail_response['message']))
+                logger.info("测试用例：账单详情接口-断言成功，返回message为: {}".format(transaction_detail_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(transaction_detail_response['message']))
+                logger.exception("测试用例：账单详情接口断言失败，实际返回message：{}".format(transaction_detail_response['message']))
                 raise
 
 @allure.feature("wallet客户端银行账户相关")
@@ -223,7 +223,7 @@ class TestSuite4(object):
     # 用例描述
     @allure.description('walletApp-Bank list场景')
     # 测试步骤
-    @allure.step('测试客户端查看银行列表记录')
+    @allure.step('测试客户端查看银行账户列表记录')
     # 用例标题
     @allure.title('walletApp-BankList')
     def test_banklist_request(self):
@@ -235,11 +235,11 @@ class TestSuite4(object):
         with allure.step("3、执行断言"):
             try:
                 assert 'success' == bank_list_response['message']
-                logger.info("断言成功，返回message为: {}".format(bank_list_response['message']))
+                logger.info("测试用例：银行账户列表接口-断言成功，返回message为: {}".format(bank_list_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(bank_list_response['message']))
+                logger.exception("测试用例：银行账户列表接口-断言失败，实际返回message：{}".format(bank_list_response['message']))
                 raise
 
     @pytest.mark.run(order=9)
@@ -264,11 +264,11 @@ class TestSuite4(object):
         with allure.step("4、执行断言"):
             try:
                 assert 'OK' == add_bank_response['message']
-                logger.info("断言成功，返回message为: {}".format(add_bank_response['message']))
+                logger.info("测试用例：进入银行账户编辑页接口-断言成功，返回message为: {}".format(add_bank_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(add_bank_response['message']))
+                logger.exception("测试用例：进入银行账户编辑页接口-断言失败，实际返回message：{}".format(add_bank_response['message']))
                 raise
 
     @pytest.mark.run(order=10)
@@ -295,11 +295,11 @@ class TestSuite4(object):
         with allure.step("5、执行断言"):
             try:
                 assert 'success' == confirm_bankinfo_response['message']
-                logger.info("断言成功，返回message为: {}".format(confirm_bankinfo_response['message']))
+                logger.info("测试用例：添加银行账户接口-断言成功，返回message为: {}".format(confirm_bankinfo_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(confirm_bankinfo_response['message']))
+                logger.exception("测试用例：添加银行账户接口-断言失败，实际返回message：{}".format(confirm_bankinfo_response['message']))
                 raise
 
     @pytest.mark.run(order=11)
@@ -326,11 +326,11 @@ class TestSuite4(object):
         with allure.step("5、执行断言"):
             try:
                 assert 'success' == delete_bankinfo_response['message']
-                logger.info("断言成功，返回message为: {}".format(delete_bankinfo_response['message']))
+                logger.info("测试用例：删除银行账户接口-断言成功，返回message为: {}".format(delete_bankinfo_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(delete_bankinfo_response['message']))
+                logger.exception("测试用例：删除银行账户接口-断言失败，实际返回message：{}".format(delete_bankinfo_response['message']))
                 raise
 
 @allure.feature("wallet客户端维护个人信息")
@@ -358,11 +358,11 @@ class TestSuite5(object):
         with allure.step("4、执行断言"):
             try:
                 assert 'OK' == save_profile_response['message']
-                logger.info("断言成功，返回message为: {}".format(save_profile_response['message']))
+                logger.info("测试用例：维护个人信息接口-断言成功，返回message为: {}".format(save_profile_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(save_profile_response['message']))
+                logger.exception("测试用例：维护个人信息接口-断言失败，实际返回message：{}".format(save_profile_response['message']))
                 raise
 
     @pytest.mark.run(order=13)
@@ -388,11 +388,11 @@ class TestSuite5(object):
         with allure.step("4、执行断言"):
             try:
                 assert 'OK' == sms_send_response['message']
-                logger.info("断言成功，返回message为: {}".format(sms_send_response['message']))
+                logger.info("测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(sms_send_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(sms_send_response['message']))
+                logger.exception("测试用例：发送smsOTP接口断言失败，实际返回message：{}".format(sms_send_response['message']))
                 raise
 
     @pytest.mark.run(order=14)
@@ -421,11 +421,11 @@ class TestSuite5(object):
         with allure.step("6、执行断言"):
             try:
                 assert 'success' == reset_login_pwd_response['message']
-                logger.info("断言成功，返回message为: {}".format(reset_login_pwd_response['message']))
+                logger.info("测试用例：重置登录密码接口-断言成功，返回message为: {}".format(reset_login_pwd_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(reset_login_pwd_response['message']))
+                logger.exception("测试用例：重置登录密码接口-断言失败，实际返回message：{}".format(reset_login_pwd_response['message']))
                 raise
 
     @pytest.mark.run(order=15)
@@ -453,11 +453,11 @@ class TestSuite5(object):
         with allure.step("6、执行断言"):
             try:
                 assert 'success' == reset_wallet_pwd_response['message']
-                logger.info("断言成功，返回message为: {}".format(reset_wallet_pwd_response['message']))
+                logger.info("测试用例：重置支付密码接口-断言成功，返回message为: {}".format(reset_wallet_pwd_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(reset_wallet_pwd_response['message']))
+                logger.exception("测试用例：重置支付密码接口-断言失败，实际返回message：{}".format(reset_wallet_pwd_response['message']))
                 raise
 
 @allure.feature("wallet客户端提现")
@@ -483,11 +483,11 @@ class TestSuite6(object):
         with allure.step("3、执行断言"):
             try:
                 assert 'success' == channel_response['message']
-                logger.info("断言成功，返回message为: {}".format(channel_response['message']))
+                logger.info("测试用例：选择提现渠道接口-断言成功，返回message为: {}".format(channel_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(channel_response['message']))
+                logger.exception("测试用例：选择提现渠道接口-断言失败，实际返回message：{}".format(channel_response['message']))
                 raise
 
     @pytest.mark.run(order=17)
@@ -511,11 +511,11 @@ class TestSuite6(object):
         with allure.step("3、执行断言"):
             try:
                 assert 'success' == pay_times_response['message']
-                logger.info("断言成功，返回message为: {}".format(pay_times_response['message']))
+                logger.info("测试用例：验证交易次数接口-断言成功，返回message为: {}".format(pay_times_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(pay_times_response['message']))
+                logger.exception("测试用例：验证交易次数接口-断言失败，实际返回message：{}".format(pay_times_response['message']))
                 raise
 
     @pytest.mark.run(order=18)
@@ -543,11 +543,11 @@ class TestSuite6(object):
         with allure.step("5、执行断言"):
             try:
                 assert "The withdraw amount can't be lower than R$0.50" == pix_direct_response['message']
-                logger.info("断言成功，返回message为: {}".format(pix_direct_response['message']))
+                logger.info("测试用例：pix提现接口-断言成功，返回message为: {}".format(pix_direct_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("断言失败，实际返回message：{}".format(pix_direct_response['message']))
+                logger.exception("测试用例：pix提现接口-断言失败，实际返回message：{}".format(pix_direct_response['message']))
                 raise
 
 
