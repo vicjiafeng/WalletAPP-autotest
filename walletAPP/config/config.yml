@@ -41,7 +41,7 @@ paths:
     resetuserpwd_path: '/api/v1/user/resetPassword'
     #注册登录接口
     register_path: '/api/v1/user/login'
-    #设置登录密码接口
+    #注册设置登录密码接口
     setpassword_path: '/api/v1/user/setPassword'
     #注册编辑个人信息接口
     addprofile_path: '/api/v1/user_info/add_profile'
@@ -51,20 +51,31 @@ head:
         'content-type': 'application/json'
         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1'
 
-#相关敏感信息自行配置
 data:
-    logintimes:
+    brazil_logintimes:
         'json':
             "areaCode": "86"
-            "phone": ""
-    login:
+            "phone": "15848900589"
+    brazil_login:
         'json':
             "areaCode": "86"
             "bonusCode": ""
-            "phone": ""
+            "phone": "15848900589"
             "captchaId": ""
             "code": ""
-            "password": ""
+            "password": "08b798781a80f134c8efb49b89f260b7"
+    mexico_logintimes:
+        'json':
+            "areaCode": "52"
+            "phone": "4211111112"
+    mexico_login:
+        'json':
+            "areaCode": "52"
+            "bonusCode": ""
+            "phone": "4211111112"
+            "captchaId": ""
+            "code": ""
+            "password": "08b798781a80f134c8efb49b89f260b7"
     history:
         'payload':
             "date": "2023-05"
@@ -73,36 +84,62 @@ data:
     channellist:
         'json':
             "channelType": 1
-    addbank:
+    addbank_brazil:
         'json':
             "code_types": [2]
-    confirmbankinfo:
+    addbank_mexico:
+        'json':
+            "code_types": [3]
+    brazil_bank:
         'json':
             "accountDigit": 1
-            "accountNumber": ""
+            "accountNumber": "214124124"
             # 1 - checking, 2 - saving
             "accountType": 2
-            "agency": ""
-            "bankCode": ""
-            "beneficiaryName": ""
-            "documentId": ""
-    saveprofile:
+            "agency": "2412"
+            "bankCode": "241"
+            "beneficiaryName": "GUILHERME ALVES DE SOUZA"
+            "documentId": "36855571816"
+    mexico_bank:
+        'json':
+            "accountNumber": "646180137004400578"
+            "accountType": 5
+            "bankCode": "40030"
+            "beneficiaryName": "jiafeng"
+            "documentId": "HEGG560427MVZRRL01"
+            "documentType": 4
+    saveprofile_brazil:
         'json1':
-            "new_cep": ""
+            "new_cep": "98765432"
         'json2':
-            "new_email": ""
-    sendsms:
+            "new_email": "jiafeng@xcloudgame.com"
+    saveprofile_mexico:
+        'json1':
+            "new_cep": "12345"
+        'json2':
+            "new_email": "jiafeng@xcloudgame.com"
+    sendsms_brazil:
         'json':
             "area_code": "86"
-            "phone": ""
+            "phone": "15000000000"
             "platform": 1
             # 7 - change_password, 8 - register
             "scene": 7
-    channel:
+    sendsms_mexico:
+        'json':
+            "area_code": "52"
+            "phone": "4211111112"
+            "platform": 1
+            # 7 - change_password, 8 - register
+            "scene": 7
+    brazil_channel:
         'payload1':
             "channel": "pix"
         'payload2':
             "channel": "bank_transfer"
+    mexico_SPEI:
+        'json':
+            "channel": 5
     pixdirect:
         # 设置提现金额小于0.50，报错：The withdraw amount can't be lower than R$0.50
         'pass':
@@ -110,26 +147,36 @@ data:
             "currency": "BRL"
             # 1 - CNPJ,  2 - CPF, 3 - EVP,  4 - PHONE, 5 - EMAIL
             "pixType": 3
-            "pixVal": ""
-            "password": ""
+            "pixVal": "f5d9b9d8-b449-49d8-837d-19654e9a639a"
+            "password": "0f1df8ad4082ddd083cb5c269019c0ed"
         # 设置支付密码错误，报错：The password or account is incorrect. Please try again.
         'fail':
             "amount": 0.50
             "currency": "BRL"
             # 1 - CNPJ,  2 - CPF, 3 - EVP,  4 -PHONE, 5 - EMAIL
             "pixType": 3
-            "pixVal": ""
-            "password": ""
-    resetwalletpwd:
+            "pixVal": "f5d9b9d8-b449-49d8-837d-19654e9a639a"
+            "password": "985e03513cbf9c160d62cc0d46d98b26"
+    resetwalletpwd_brazil:
         'json':
-            "password": ""
-            "confirmPassword": ""
-            "oldPassword": ""
-    resetuserpwd:
+            "password": "0f1df8ad4082ddd083cb5c269019c0ed"
+            "confirmPassword": "0f1df8ad4082ddd083cb5c269019c0ed"
+            "oldPassword": "0f1df8ad4082ddd083cb5c269019c0ed"
+    resetwalletpwd_mexico:
         'json':
-            "password": ""
-            "confirmPassword": ""
-            "oldPassword": ""
+            "password": "0f1df8ad4082ddd083cb5c269019c0ed"
+            "confirmPassword": "0f1df8ad4082ddd083cb5c269019c0ed"
+            "oldPassword": "0f1df8ad4082ddd083cb5c269019c0ed"
+    resetuserpwd_brazil:
+        'json':
+            "password": "08b798781a80f134c8efb49b89f260b7"
+            "confirmPassword": "08b798781a80f134c8efb49b89f260b7"
+            "oldPassword": "08b798781a80f134c8efb49b89f260b7"
+    resetuserpwd_mexico:
+        'json':
+            "password": "08b798781a80f134c8efb49b89f260b7"
+            "confirmPassword": "08b798781a80f134c8efb49b89f260b7"
+            "oldPassword": "08b798781a80f134c8efb49b89f260b7"
     register:
         'json':
             "areaCode": "86"
@@ -141,13 +188,13 @@ data:
             "source": ""
     setpassword:
         'json':
-            "password": ""
-            "confirmPassword": ""
+            "password": "08b798781a80f134c8efb49b89f260b7"
+            "confirmPassword": "08b798781a80f134c8efb49b89f260b7"
     addprofile:
         'json':
-            "documentId": ""
-            "email": ""
+            "documentId": "36855571816"
+            "email": "jiafeng@xcloudgame.com"
             "documentType": "1"
-            "name": ""
-            "cep": ""
+            "name": "jiafeng"
+            "cep": "12345678"
             "regAgreementStatus": 1
