@@ -3,48 +3,64 @@ urls:
     dev_url: 'https://dev-wallet.pagsmile.com'
 
 paths:
+    #登录/注册
     #登录次数接口
     logintimes_path: '/api/v1/user/loginTimes'
-    #登录接口
-    login_path: '/api/v1/user/loginPassword'
+    #密码登录接口
+    loginPwd_path: '/api/v1/user/loginPassword'
+    #用户登录（跳转登录页）
+    login_path: '/api/v1/user/login'
+    #忘记密码
+    forgotpwd_path: '/api/v1/user/forgotPassword'
+    #注册设置登录密码接口
+    setpassword_path: '/api/v1/user/setPassword'
+    #注册登录接口
+    register_path: '/api/v1/user/login'
+
+    #账单
     #账单列表页接口
-    history_path: '/api/v1/transaction/list'
+    transactionList_path: '/api/v1/transaction/list'
     #账单详情接口
     transactiondetail_path: '/api/v1/transaction/detail'
-    #银行列表页接口
-    banklist_path: '/api/v1/user/bankList'
+
+    #维护用户信息
     #个人信息接口
     profile_path: '/api/v1/user_info/profile'
-    #渠道列表接口
-    channellist_path: '/api/v1/conf/channelList'
-    #物料接口
-    good_path: '/api/v2/goods/list'
+    #添加个人信息接口
+    addprofile_path: '/api/v1/user_info/add_profile'
+    #保存个人信息接口
+    saveprofile_path: '/api/v2/wallet/user/profile_save'
+    #重置支付密码接口
+    resetwalletpwd_path: '/api/v1/wallet/resetPassword'
+    #重置登录密码接口
+    resetuserpwd_path: '/api/v1/user/resetPassword'
+    #调用短信平台接口
+    sendsms_path: '/api/v2/wallet/sms_code/send'
+
+    #银行账户
+    #银行列表页接口
+    banklist_path: '/api/v1/user/bankList'
     #添加银行账户接口
     addbank_path: '/api/v2/meta/code'
     #添加银行账户接口
     confirmbankinfo_path: '/api/v1/user/addBankInfo'
     #删除银行账户接口
     deletebankinfo_path: '/api/v1/user/deleteBankInfo'
-    #保存个人信息接口
-    saveprofile_path: '/api/v2/wallet/user/profile_save'
-    #调用短信平台接口
-    sendsms_path: '/api/v2/wallet/sms_code/send'
+
+    #渠道/提现
+    #渠道列表接口
+    channellist_path: '/api/v1/conf/channelList'
     #选择渠道接口
     channel_path: '/api/v1/withdraw/info'
     #验证支付次数接口
     paytimes_path: '/api/v1/wallet/payTimes'
     #pix提现接口
     pixdirect_path: '/api/v1/withdraw/pixdirect'
-    #重置支付密码接口
-    resetwalletpwd_path: '/api/v1/wallet/resetPassword'
-    #重置登录密码接口
-    resetuserpwd_path: '/api/v1/user/resetPassword'
-    #注册登录接口
-    register_path: '/api/v1/user/login'
-    #注册设置登录密码接口
-    setpassword_path: '/api/v1/user/setPassword'
-    #注册编辑个人信息接口
-    addprofile_path: '/api/v1/user_info/add_profile'
+    #bank transfer提现
+    bankTransfer_path: '/api/v1/withdraw/bank_transfer'
+
+    #物料接口
+    good_path: '/api/v2/goods/list'
 
 head:
     headers:
@@ -56,7 +72,7 @@ data:
         'json':
             "areaCode": "86"
             "phone": "15848900589"
-    brazil_login:
+    brazil_loginPwd:
         'json':
             "areaCode": "86"
             "bonusCode": ""
@@ -68,7 +84,7 @@ data:
         'json':
             "areaCode": "52"
             "phone": "4211111112"
-    mexico_login:
+    mexico_loginPwd:
         'json':
             "areaCode": "52"
             "bonusCode": ""
@@ -76,7 +92,7 @@ data:
             "captchaId": ""
             "code": ""
             "password": "08b798781a80f134c8efb49b89f260b7"
-    history:
+    transactionList:
         'payload':
             "date": "2023-05"
             "transactionStatus": "1"
@@ -108,6 +124,21 @@ data:
             "beneficiaryName": "jiafeng"
             "documentId": "HEGG560427MVZRRL01"
             "documentType": 4
+    addprofile_brazil:
+        'json':
+            "name": "GUILHERME ALVES DE SOUZA",
+            "documentId": "36855571816",
+            "documentType": "1"
+            "email": "jiafeng@q1.com",
+            "cep": "12345666",
+            "regAgreementStatus": 1
+    addprofile_mexico:
+        'json':
+            "name": "jiafeng",
+            "documentId": "HEGG560427MVZRRL01",
+            "email": "jia@jia.com",
+            "cep": "12340",
+            "regAgreementStatus": 1
     saveprofile_brazil:
         'json1':
             "new_cep": "98765432"
@@ -137,8 +168,9 @@ data:
             "channel": "pix"
         'payload2':
             "channel": "bank_transfer"
-    mexico_SPEI:
+    mexico_channel:
         'json':
+            # SPEI
             "channel": 5
     pixdirect:
         # 设置提现金额小于0.50，报错：The withdraw amount can't be lower than R$0.50
@@ -146,7 +178,7 @@ data:
             "amount": 0.01
             "currency": "BRL"
             # 1 - CNPJ,  2 - CPF, 3 - EVP,  4 - PHONE, 5 - EMAIL
-            "pixType": 3
+            "pixType": 5
             "pixVal": "f5d9b9d8-b449-49d8-837d-19654e9a639a"
             "password": "0f1df8ad4082ddd083cb5c269019c0ed"
         # 设置支付密码错误，报错：The password or account is incorrect. Please try again.
@@ -154,9 +186,16 @@ data:
             "amount": 0.50
             "currency": "BRL"
             # 1 - CNPJ,  2 - CPF, 3 - EVP,  4 -PHONE, 5 - EMAIL
-            "pixType": 3
-            "pixVal": "f5d9b9d8-b449-49d8-837d-19654e9a639a"
-            "password": "985e03513cbf9c160d62cc0d46d98b26"
+            "pixType": 5
+            "pixVal": "1@1.1"
+            "password": "d69d629a420eae33d481871a0d491f29"
+    bankTransfer:
+        'fail':
+            "amount": 10.00
+            "currency": "BRL"
+            "password": "d69d629a420eae33d481871a0d491f29"
+            #mock buid
+            "buid": "12345"
     resetwalletpwd_brazil:
         'json':
             "password": "0f1df8ad4082ddd083cb5c269019c0ed"
@@ -190,11 +229,3 @@ data:
         'json':
             "password": "08b798781a80f134c8efb49b89f260b7"
             "confirmPassword": "08b798781a80f134c8efb49b89f260b7"
-    addprofile:
-        'json':
-            "documentId": "36855571816"
-            "email": "jiafeng@xcloudgame.com"
-            "documentType": "1"
-            "name": "jiafeng"
-            "cep": "12345678"
-            "regAgreementStatus": 1

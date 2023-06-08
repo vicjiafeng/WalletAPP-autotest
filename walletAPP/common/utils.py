@@ -14,10 +14,10 @@ def brazil_logintimes_request():                                                
     json_dict = json.loads(res)
     return json_dict
 
-def brazil_login_request():                                                                    # 巴西登录
-    url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['login_path']
+def brazil_loginPwd_request():                                                                    # 巴西密码登录
+    url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['loginPwd_path']
     headers = ConfigYaml().get_conf_headers()
-    data = ConfigYaml().get_conf_data()['brazil_login']['json']
+    data = ConfigYaml().get_conf_data()['brazil_loginPwd']['json']
     r = requests.post(url, headers=headers, json=data)
     res = r.text
     json_dict = json.loads(res)
@@ -32,10 +32,10 @@ def mexico_logintimes_request():                                                
     json_dict = json.loads(res)
     return json_dict
 
-def mexico_login_request():                                                                      # 墨西哥登录
-    url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['login_path']
+def mexico_loginPwd_request():                                                                      # 墨西哥密码登录
+    url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['loginPwd_path']
     headers = ConfigYaml().get_conf_headers()
-    data = ConfigYaml().get_conf_data()['mexico_login']['json']
+    data = ConfigYaml().get_conf_data()['mexico_loginPwd']['json']
     r = requests.post(url, headers=headers, json=data)
     res = r.text
     json_dict = json.loads(res)
@@ -56,11 +56,11 @@ class TestCase01(object):
     def teardowm(self):
         print("测试用例执行完成")
 
-    def history_request(self):                                                       # 发起查看交易历史
-        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['history_path']
+    def transactionList_request(self):                                                       # 发起查看交易历史
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['transactionList_path']
         authorization = token1
         headers = {'authorization': authorization}
-        payload = ConfigYaml().get_conf_data()['history']['payload']
+        payload = ConfigYaml().get_conf_data()['transactionList']['payload']
         r = requests.get(url, headers=headers, params=payload)
         res = r.text
         json_dict = json.loads(res)
@@ -91,6 +91,16 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         r = requests.get(url, headers=headers)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
+    def addprofile_request(self):                                                     # 添加用户信息
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['addprofile_path']
+        authorization = token1
+        headers = {'authorization': authorization}
+        data = ConfigYaml().get_conf_data()['addprofile_brazil']['json']
+        r = requests.post(url, headers=headers, json=data)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -184,17 +194,27 @@ class TestCase01(object):
         json_dict = json.loads(res)
         return json_dict
 
-    def pixdirect_request(self):                                                          # PIX渠道提现
+    def pixdirect_request(self):                                                           # PIX渠道提现
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['pixdirect_path']
         authorization = token1
         headers = {'authorization': authorization}
-        data = ConfigYaml().get_conf_data()['pixdirect']['pass']
+        data = ConfigYaml().get_conf_data()['pixdirect']['fail']
         r = requests.post(url=url, headers=headers, json=data)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
 
-    def resetwalletpwd_request(self):                                                      # 设置新支付密码
+    def bankTransfer_request(self):                                                          # 银行账户渠道提现
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['bankTransfer_path']
+        authorization = token1
+        headers = {'authorization': authorization}
+        data = ConfigYaml().get_conf_data()['bankTransfer']['fail']
+        r = requests.post(url=url, headers=headers, json=data)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
+    def resetwalletpwd_request(self):                                                       # 设置新支付密码
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['resetwalletpwd_path']
         authorization = token1
         headers = {'authorization': authorization}
@@ -240,6 +260,16 @@ class TestCase02(object):
         json_dict = json.loads(res)
         return json_dict
 
+    def addprofile_request_mexico(self):                                                     # 添加用户信息
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['addprofile_path']
+        authorization = token1
+        headers = {'authorization': authorization}
+        data = ConfigYaml().get_conf_data()['addprofile_mexico']['json']
+        r = requests.post(url, headers=headers, json=data)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
     def channellist_request_mexico(self):                                                     # 渠道列表页
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['channellist_path']
         authorization = token2
@@ -250,11 +280,11 @@ class TestCase02(object):
         json_dict = json.loads(res)
         return json_dict
 
-    def history_request_mexico(self):                                                       # 发起查看交易历史
-        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['history_path']
+    def transactionList_request_mexico(self):                                                        # 发起查看交易历史
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['transactionList_path']
         authorization = token2
         headers = {'authorization': authorization}
-        payload = ConfigYaml().get_conf_data()['history']['payload']
+        payload = ConfigYaml().get_conf_data()['transactionList']['payload']
         r = requests.get(url, headers=headers, params=payload)
         res = r.text
         json_dict = json.loads(res)
@@ -293,7 +323,7 @@ class TestCase02(object):
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['channel_path']
         authorization = token2
         headers = {'authorization': authorization}
-        payload = ConfigYaml().get_conf_data()['mexico_SPEI']['json']
+        payload = ConfigYaml().get_conf_data()['mexico_channel']['json']
         r = requests.get(url, headers=headers, params=payload)
         res = r.text
         json_dict = json.loads(res)
