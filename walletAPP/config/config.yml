@@ -34,8 +34,10 @@ paths:
     resetwalletpwd_path: '/api/v1/wallet/resetPassword'
     #重置登录密码接口
     resetuserpwd_path: '/api/v1/user/resetPassword'
-    #调用短信平台接口
+    #调用短信平台接口（登录页忘记密码、更新手机号、注册）
     sendsms_path: '/api/v2/wallet/sms_code/send'
+    #忘记支付密码
+    forgotPayPwdSMS_path: '/api/v1/sms/send_sms'
 
     #银行账户
     #银行列表页接口
@@ -149,6 +151,12 @@ data:
             "new_cep": "12345"
         'json2':
             "new_email": "jiafeng@xcloudgame.com"
+    forgotPayPwdSMS_brazil:
+        'json':
+            "scene": 5
+    forgotPayPwdSMS_mexico:
+        'json':
+            "scene": 5
     sendsms_brazil:
         'json':
             "area_code": "86"

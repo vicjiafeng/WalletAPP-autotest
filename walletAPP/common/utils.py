@@ -43,8 +43,8 @@ def mexico_loginPwd_request():                                                  
 
 
 # 调用登录接口，获取token并设置全局变量
-token1 = brazil_login_request()['data']['token']
-token2 = mexico_login_request()['data']['token']
+token1 = brazil_loginPwd_request()['data']['token']
+token2 = mexico_loginPwd_request()['data']['token']
 
 
 # 巴西市场-获取登录态后测试用例集
@@ -165,11 +165,21 @@ class TestCase01(object):
         json_dict = json.loads(res)
         return json_dict
 
-    def sendsms_request(self):                                                          # 更新手机号-发送短信验证码
+    def sendsms_request(self):                                                               # 更新手机号-发送短信验证码
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['saveprofile_path']
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['sendsms_brazil']['json']
+        r = requests.post(url=url, headers=headers, json=data)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
+    def forgotPayPwdSMS_request(self):                                                          # 忘记支付密码-发送短信验证码
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['forgotPayPwdSMS_path']
+        authorization = token1
+        headers = {'authorization': authorization}
+        data = ConfigYaml().get_conf_data()['forgotPayPwdSMS_brazil']['json']
         r = requests.post(url=url, headers=headers, json=data)
         res = r.text
         json_dict = json.loads(res)
@@ -355,6 +365,16 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['sendsms_mexico']['json']
+        r = requests.post(url=url, headers=headers, json=data)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
+    def forgotPayPwdSMS_request_mexico(self):                                                          # 忘记支付密码-发送短信验证码
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['forgotPayPwdSMS_path']
+        authorization = token1
+        headers = {'authorization': authorization}
+        data = ConfigYaml().get_conf_data()['forgotPayPwdSMS_mexico']['json']
         r = requests.post(url=url, headers=headers, json=data)
         res = r.text
         json_dict = json.loads(res)
