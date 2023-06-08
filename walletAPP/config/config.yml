@@ -128,18 +128,18 @@ data:
             "documentType": 4
     addprofile_brazil:
         'json':
-            "name": "GUILHERME ALVES DE SOUZA",
-            "documentId": "36855571816",
+            "name": "GUILHERME ALVES DE SOUZA"
+            "documentId": "36855571816"
             "documentType": "1"
-            "email": "jiafeng@q1.com",
-            "cep": "12345666",
+            "email": "jiafeng@q1.com"
+            "cep": "12345666"
             "regAgreementStatus": 1
     addprofile_mexico:
         'json':
-            "name": "jiafeng",
-            "documentId": "HEGG560427MVZRRL01",
-            "email": "jia@jia.com",
-            "cep": "12340",
+            "name": "jiafeng"
+            "documentId": "HEGG560427MVZRRL01"
+            "email": "jia@jia.com"
+            "cep": "12340"
             "regAgreementStatus": 1
     saveprofile_brazil:
         'json1':

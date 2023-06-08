@@ -53,20 +53,20 @@ class TestSuite1(object):
     @allure.step('测试登录客户端')
     # 用例标题
     @allure.title('walletApp-Login')
-    def test_brazil_loginPwd_request(self):
+    def test_brazil_loginpwd_request(self):
         with allure.step("1、登录界面输入账户密码"):
             print('输入登录手机号密码')
         with allure.step("2、点击登录按键"):
-            loginPwd_response = brazil_loginPwd_request()
+            loginpwd_response = brazil_loginpwd_request()
             print('调用登录接口，日志打印返回数据')
         with allure.step("3、执行断言"):
             try:
-                assert 'success' == loginPwd_response['message']
-                logger.info("巴西市场-测试用例：登录接口-断言成功，返回message为: {}".format(loginPwd_response['message']))
+                assert 'success' == loginpwd_response['message']
+                logger.info("巴西市场-测试用例：登录接口-断言成功，返回message为: {}".format(loginpwd_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("巴西市场-测试用例：登录接口-断言失败，实际返回message：{}".format(loginPwd_response['message']))
+                logger.exception("巴西市场-测试用例：登录接口-断言失败，实际返回message：{}".format(loginpwd_response['message']))
                 raise
 
 
@@ -170,20 +170,20 @@ class TestSuite3(object):
     @allure.step('测试客户端查看账单列表')
     # 用例标题
     @allure.title('walletApp-Transaction History List')
-    def test_transactionList_request_request(self):
+    def test_transactionlist_request(self):
         with allure.step("1、获取请求头Authorization"):
             print('获取请求头Authorization')
         with allure.step("2、进入History列表页"):
-            transactionList_response = TestCase01.transactionList_request_request(self)
+            transactionlist_response = TestCase01.transactionlist_request(self)
             print('调用账单列表接口,日志打印返回数据')
         with allure.step("3、执行断言"):
             try:
-                assert 'success' == transactionList_response['message']
-                logger.info("巴西市场-测试用例：账单列表接口-断言成功，返回message为: {}".format(transactionList_response['message']))
+                assert 'success' == transactionlist_response['message']
+                logger.info("巴西市场-测试用例：账单列表接口-断言成功，返回message为: {}".format(transactionlist_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("巴西市场-测试用例：账单列表接口-断言失败，实际返回message：{}".format(transactionList_response['message']))
+                logger.exception("巴西市场-测试用例：账单列表接口-断言失败，实际返回message：{}".format(transactionlist_response['message']))
                 raise
     @pytest.mark.run(order=7)
     @pytest.mark.transactionCase
@@ -392,7 +392,7 @@ class TestSuite5(object):
             print('调用保存接口')
         with allure.step("4、执行断言"):
             try:
-                assert 'OK' == add_profile_response['message']
+                assert 'success' == add_profile_response['message']
                 logger.info("巴西市场-测试用例：添加用户信息接口-断言成功，返回message为: {}".format(
                     add_profile_response['message']))
             except Exception as e:
@@ -443,24 +443,24 @@ class TestSuite5(object):
     @allure.step('测试用户忘记支付密码发送短信验证码')
     # 用例标题
     @allure.title('walletApp-Send SMS')
-    def test_forgotPayPwdSMS_request(self):
+    def test_forgotpaypwdsms_request(self):
         with allure.step("1、获取请求头Authorization"):
             print('获取请求头Authorization')
         with allure.step("2、个人页-更新支付密码"):
             print('触发forgot password')
         with allure.step("3、点击forgot password按键"):
-            forgotPayPwdSMS_response = TestCase01.forgotPayPwdSMS_request(self)
+            forgotpaypwdsms_response = TestCase01.forgotpaypwdsms_request(self)
             print('调用发送smsOTP')
         with allure.step("4、执行断言"):
             try:
-                assert 'OK' == forgotPayPwdSMS_response['message']
+                assert 'success' == forgotpaypwdsms_response['message']
                 logger.info("巴西市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(
-                    forgotPayPwdSMS_response['message']))
+                    forgotpaypwdsms_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("巴西市场-测试用例：发送smsOTP接口断言失败，实际返回message：{}".format(
-                    forgotPayPwdSMS_response['message']))
+                    forgotpaypwdsms_response['message']))
                 raise
 
     @pytest.mark.run(order=16)
@@ -630,24 +630,24 @@ class TestSuite6(object):
     @allure.step('测试用户进行PIX渠道提现-')
     # 用例标题
     @allure.title('walletApp-PIX Withdraw Failed due to wrong payment pwd')
-    def test_bankTransfer_request(self):
+    def test_banktransfer_request(self):
         with allure.step("1、获取请求头Authorization"):
             print('获取请求头Authorization')
         with allure.step("2、选择银行账户"):
             print('选择银行账户')
         with allure.step("3、输入交易密码"):
-            bankTransfer_response = TestCase01.bankTransfer_request(self)
+            banktransfer_response = TestCase01.banktransfer_request(self)
             print('输入错误交易密码')
         with allure.step("5、执行断言"):
             try:
-                assert "The password or account is incorrect. Please try again." == bankTransfer_response['message']
+                assert "The password or account is incorrect. Please try again." == banktransfer_response['message']
                 logger.info(
-                    "巴西市场-测试用例：银行账户提现接口-断言成功，返回message为: {}".format(bankTransfer_response['message']))
+                    "巴西市场-测试用例：银行账户提现接口-断言成功，返回message为: {}".format(banktransfer_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception(
-                    "巴西市场-测试用例：银行账户提现接口-断言失败，实际返回message：{}".format(bankTransfer_response['message']))
+                    "巴西市场-测试用例：银行账户提现接口-断言失败，实际返回message：{}".format(banktransfer_response['message']))
                 raise
 
 @allure.feature("墨西哥市场-wallet客户端登录")
@@ -696,20 +696,20 @@ class TestSuite7(object):
     @allure.step('测试登录客户端')
     # 用例标题
     @allure.title('walletApp-Login')
-    def test_mexico_loginPwd_request(self):
+    def test_mexico_loginpwd_request(self):
         with allure.step("1、登录界面输入账户密码"):
             print('输入登录手机号密码')
         with allure.step("2、点击登录按键"):
-            loginPwd_response = mexico_loginPwd_request()
+            loginpwd_response = mexico_loginpwd_request()
             print('调用登录接口，日志打印返回数据')
         with allure.step("3、执行断言"):
             try:
-                assert 'success' == loginPwd_response['message']
-                logger.info("墨西哥市场-测试用例：登录接口-断言成功，返回message为: {}".format(loginPwd_response['message']))
+                assert 'success' == loginpwd_response['message']
+                logger.info("墨西哥市场-测试用例：登录接口-断言成功，返回message为: {}".format(loginpwd_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("墨西哥市场-测试用例：登录接口-断言失败，实际返回message：{}".format(loginPwd_response['message']))
+                logger.exception("墨西哥市场-测试用例：登录接口-断言失败，实际返回message：{}".format(loginpwd_response['message']))
                 raise
 
 
@@ -927,7 +927,7 @@ class TestSuite9(object):
             print('调用保存接口')
         with allure.step("4、执行断言"):
             try:
-                assert 'OK' == add_profile_response['message']
+                assert 'success' == add_profile_response['message']
                 logger.info("墨西哥市场-测试用例：添加用户信息接口-断言成功，返回message为: {}".format(
                     add_profile_response['message']))
             except Exception as e:
@@ -979,24 +979,24 @@ class TestSuite9(object):
     @allure.step('测试用户忘记支付密码发送短信验证码')
     # 用例标题
     @allure.title('walletApp-Send SMS')
-    def test_forgotPayPwdSMS_request_mexico(self):
+    def test_forgotpaypwdsms_request_mexico(self):
         with allure.step("1、获取请求头Authorization"):
             print('获取请求头Authorization')
         with allure.step("2、个人页-更新支付密码"):
             print('触发forgot password')
         with allure.step("3、点击forgot password按键"):
-            forgotPayPwdSMS_response = TestCase02.forgotPayPwdSMS_request_mexico(self)
+            forgotpaypwdsms_response = TestCase02.forgotpaypwdsms_request_mexico(self)
             print('调用发送smsOTP')
         with allure.step("4、执行断言"):
             try:
-                assert 'OK' == forgotPayPwdSMS_response['message']
+                assert 'success' == forgotpaypwdsms_response['message']
                 logger.info("墨西哥市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(
-                    forgotPayPwdSMS_response['message']))
+                    forgotpaypwdsms_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("墨西哥市场-测试用例：发送smsOTP接口断言失败，实际返回message：{}".format(
-                    forgotPayPwdSMS_response['message']))
+                    forgotpaypwdsms_response['message']))
                 raise
 
     @pytest.mark.run(order=33)

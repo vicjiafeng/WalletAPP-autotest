@@ -14,7 +14,8 @@ def brazil_logintimes_request():                                                
     json_dict = json.loads(res)
     return json_dict
 
-def brazil_loginPwd_request():                                                                    # 巴西密码登录
+
+def brazil_loginpwd_request():                                                                    # 巴西密码登录
     url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['loginPwd_path']
     headers = ConfigYaml().get_conf_headers()
     data = ConfigYaml().get_conf_data()['brazil_loginPwd']['json']
@@ -22,6 +23,7 @@ def brazil_loginPwd_request():                                                  
     res = r.text
     json_dict = json.loads(res)
     return json_dict
+
 
 def mexico_logintimes_request():                                                                # 墨西哥登录错误次数限制
     url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['logintimes_path']
@@ -32,7 +34,8 @@ def mexico_logintimes_request():                                                
     json_dict = json.loads(res)
     return json_dict
 
-def mexico_loginPwd_request():                                                                      # 墨西哥密码登录
+
+def mexico_loginpwd_request():                                                                      # 墨西哥密码登录
     url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['loginPwd_path']
     headers = ConfigYaml().get_conf_headers()
     data = ConfigYaml().get_conf_data()['mexico_loginPwd']['json']
@@ -43,8 +46,8 @@ def mexico_loginPwd_request():                                                  
 
 
 # 调用登录接口，获取token并设置全局变量
-token1 = brazil_loginPwd_request()['data']['token']
-token2 = mexico_loginPwd_request()['data']['token']
+token1 = brazil_loginpwd_request()['data']['token']
+token2 = mexico_loginpwd_request()['data']['token']
 
 
 # 巴西市场-获取登录态后测试用例集
@@ -56,7 +59,7 @@ class TestCase01(object):
     def teardowm(self):
         print("测试用例执行完成")
 
-    def transactionList_request(self):                                                       # 发起查看交易历史
+    def transactionlist_request(self):                                                       # 发起查看交易历史
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['transactionList_path']
         authorization = token1
         headers = {'authorization': authorization}
@@ -70,7 +73,7 @@ class TestCase01(object):
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['transactiondetail_path']
         authorization = token1
         headers = {'authorization': authorization}
-        payload = TestCase01.history_request(self)['data']['transactionList'][0]['transactionId']
+        payload = TestCase01.transactionlist_request(self)['data']['transactionList'][0]['transactionId']
         data = {"transactionId": payload}
         r = requests.get(url, headers=headers, params=data)
         res = r.text
@@ -175,7 +178,7 @@ class TestCase01(object):
         json_dict = json.loads(res)
         return json_dict
 
-    def forgotPayPwdSMS_request(self):                                                          # 忘记支付密码-发送短信验证码
+    def forgotpaypwdsms_request(self):                                                          # 忘记支付密码-发送短信验证码
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['forgotPayPwdSMS_path']
         authorization = token1
         headers = {'authorization': authorization}
@@ -214,7 +217,7 @@ class TestCase01(object):
         json_dict = json.loads(res)
         return json_dict
 
-    def bankTransfer_request(self):                                                          # 银行账户渠道提现
+    def banktransfer_request(self):                                                          # 银行账户渠道提现
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['bankTransfer_path']
         authorization = token1
         headers = {'authorization': authorization}
@@ -272,7 +275,7 @@ class TestCase02(object):
 
     def addprofile_request_mexico(self):                                                     # 添加用户信息
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['addprofile_path']
-        authorization = token1
+        authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['addprofile_mexico']['json']
         r = requests.post(url, headers=headers, json=data)
@@ -360,6 +363,7 @@ class TestCase02(object):
         json_dict = json.loads(res)
         return json_dict
 
+
     def sendsms_request_mexico(self):                                                          # 更新手机号-发送短信验证码
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['saveprofile_path']
         authorization = token2
@@ -370,9 +374,9 @@ class TestCase02(object):
         json_dict = json.loads(res)
         return json_dict
 
-    def forgotPayPwdSMS_request_mexico(self):                                                          # 忘记支付密码-发送短信验证码
+    def forgotpaypwdsms_request_mexico(self):                                                          # 忘记支付密码-发送短信验证码
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['forgotPayPwdSMS_path']
-        authorization = token1
+        authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['forgotPayPwdSMS_mexico']['json']
         r = requests.post(url=url, headers=headers, json=data)
