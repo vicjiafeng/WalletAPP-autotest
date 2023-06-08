@@ -40,11 +40,11 @@ paths:
     forgotPayPwdSMS_path: '/api/v1/sms/send_sms'
 
     #银行账户
-    #银行列表页接口
+    #银行账户列表页接口
     banklist_path: '/api/v1/user/bankList'
     #添加银行账户接口
     addbank_path: '/api/v2/meta/code'
-    #添加银行账户接口
+    #新增银行账户接口
     confirmbankinfo_path: '/api/v1/user/addBankInfo'
     #删除银行账户接口
     deletebankinfo_path: '/api/v1/user/deleteBankInfo'
@@ -60,6 +60,8 @@ paths:
     pixdirect_path: '/api/v1/withdraw/pixdirect'
     #bank transfer提现
     bankTransfer_path: '/api/v1/withdraw/bank_transfer'
+    #墨西哥-SPEI提现
+    SPEI_path: '/api/v2/withdraw/to_bank_transfer'
 
     #物料接口
     good_path: '/api/v2/goods/list'
@@ -180,6 +182,12 @@ data:
         'json':
             # SPEI
             "channel": 5
+    SPEI_withdraw:
+        'fail':
+            "amount": "15.00"
+            #mock buid
+            "buid": "12345"
+            "password": "0cfbd4458ac60a27b2fdcf28672e3710"
     pixdirect:
         # 设置提现金额小于0.50，报错：The withdraw amount can't be lower than R$0.50
         'pass':

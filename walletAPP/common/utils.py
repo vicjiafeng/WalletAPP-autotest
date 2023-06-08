@@ -342,6 +342,16 @@ class TestCase02(object):
         json_dict = json.loads(res)
         return json_dict
 
+    def spei_withdraw_request_mexico(self):                                                           # 墨西哥SPEI提现
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['SPEI_path']
+        authorization = token2
+        headers = {'authorization': authorization}
+        payload = ConfigYaml().get_conf_data()['SPEI_withdraw']['fail']
+        r = requests.get(url, headers=headers, params=payload)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
     def deletebankinfo_request_mexico(self):                                                 # 删除银行账户
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['deletebankinfo_path']
         authorization = token2
