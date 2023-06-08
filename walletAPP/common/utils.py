@@ -169,7 +169,7 @@ class TestCase01(object):
         return json_dict
 
     def sendsms_request(self):                                                               # 更新手机号-发送短信验证码
-        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['saveprofile_path']
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['sendsms_path']
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['sendsms_brazil']['json']
@@ -188,7 +188,16 @@ class TestCase01(object):
         json_dict = json.loads(res)
         return json_dict
 
-    def channel_request(self):                                                                 # 巴西提现渠道
+    def reportphone_request(self):                                                               # 上报手机号
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['reportPhone_path']
+        params = ConfigYaml().get_conf_data()['reportPhone']['params']
+        data = ConfigYaml().get_conf_data()['reportPhone']['json']
+        r = requests.post(url=url, params=params, json=data)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
+    def channel_request(self):                                                                  # 巴西提现渠道
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['channel_path']
         authorization = token1
         headers = {'authorization': authorization}
@@ -346,13 +355,13 @@ class TestCase02(object):
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['SPEI_path']
         authorization = token2
         headers = {'authorization': authorization}
-        payload = ConfigYaml().get_conf_data()['SPEI_withdraw']['fail']
-        r = requests.get(url, headers=headers, params=payload)
+        data = ConfigYaml().get_conf_data()['SPEI_withdraw']['fail']
+        r = requests.post(url, headers=headers, json=data)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
 
-    def deletebankinfo_request_mexico(self):                                                 # 删除银行账户
+    def deletebankinfo_request_mexico(self):                                                            # 删除银行账户
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['deletebankinfo_path']
         authorization = token2
         headers = {'authorization': authorization}
@@ -373,9 +382,8 @@ class TestCase02(object):
         json_dict = json.loads(res)
         return json_dict
 
-
     def sendsms_request_mexico(self):                                                          # 更新手机号-发送短信验证码
-        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['saveprofile_path']
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['sendsms_path']
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['sendsms_mexico']['json']
