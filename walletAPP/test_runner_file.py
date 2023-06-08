@@ -401,67 +401,6 @@ class TestSuite5(object):
                 logger.exception("巴西市场-测试用例：添加用户信息接口-断言失败，实际返回message：{}".format(
                     add_profile_response['message']))
                 raise
-    @pytest.mark.run(order=14)
-    @pytest.mark.personInfoCase
-    # 用户故事
-    @allure.story('用户发送短信验证码场景(更新手机号)')
-    # 用例等级
-    @allure.severity(allure.severity_level.CRITICAL)
-    # 用例描述
-    @allure.description('walletApp更新个人手机号发送smsOTP场景')
-    # 测试步骤
-    @allure.step('测试更新用户手机号发送短信验证码')
-    # 用例标题
-    @allure.title('walletApp-Send SMS')
-    def test_sendsms_request(self):
-        with allure.step("1、获取请求头Authorization"):
-            print('获取请求头Authorization')
-        with allure.step("2、输入未注册过的新手机号"):
-            print('输入新的手机号')
-        with allure.step("3、点击send按键"):
-            sms_send_response = TestCase01.sendsms_request(self)
-            print('调用发送smsOTP')
-        with allure.step("4、执行断言"):
-            try:
-                assert 'OK' == sms_send_response['message']
-                logger.info("巴西市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(sms_send_response['message']))
-            except Exception as e:
-                s = traceback.format_exc()
-                logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("巴西市场-测试用例：发送smsOTP接口断言失败，实际返回message：{}".format(sms_send_response['message']))
-                raise
-
-    @pytest.mark.run(order=15)
-    @pytest.mark.personInfoCase
-    # 用户故事
-    @allure.story('用户忘记支付密码发送短信场景')
-    # 用例等级
-    @allure.severity(allure.severity_level.CRITICAL)
-    # 用例描述
-    @allure.description('walletApp忘记支付密码发送短信场景')
-    # 测试步骤
-    @allure.step('测试用户忘记支付密码发送短信验证码')
-    # 用例标题
-    @allure.title('walletApp-Send SMS')
-    def test_forgotpaypwdsms_request(self):
-        with allure.step("1、获取请求头Authorization"):
-            print('获取请求头Authorization')
-        with allure.step("2、个人页-更新支付密码"):
-            print('触发forgot password')
-        with allure.step("3、点击forgot password按键"):
-            forgotpaypwdsms_response = TestCase01.forgotpaypwdsms_request(self)
-            print('调用发送smsOTP')
-        with allure.step("4、执行断言"):
-            try:
-                assert 'The limit of verification codes sent has been reached.' == forgotpaypwdsms_response['message']
-                logger.info("巴西市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(
-                    forgotpaypwdsms_response['message']))
-            except Exception as e:
-                s = traceback.format_exc()
-                logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("巴西市场-测试用例：发送smsOTP接口断言失败，实际返回message：{}".format(
-                    forgotpaypwdsms_response['message']))
-                raise
 
     @pytest.mark.run(order=16)
     @pytest.mark.personInfoCase
@@ -650,8 +589,105 @@ class TestSuite6(object):
                     "巴西市场-测试用例：银行账户提现接口-断言失败，实际返回message：{}".format(banktransfer_response['message']))
                 raise
 
-@allure.feature("墨西哥市场-wallet客户端登录")
+@allure.feature("巴西市场-wallet客户端短信相关")
 class TestSuite7(object):
+    @pytest.mark.run(order=14)
+    @pytest.mark.personInfoCase
+    # 用户故事
+    @allure.story('用户发送短信验证码场景(更新手机号)')
+    # 用例等级
+    @allure.severity(allure.severity_level.CRITICAL)
+    # 用例描述
+    @allure.description('walletApp更新个人手机号发送smsOTP场景')
+    # 测试步骤
+    @allure.step('测试更新用户手机号发送短信验证码')
+    # 用例标题
+    @allure.title('walletApp-Send SMS')
+    def test_sendsms_request(self):
+        with allure.step("1、获取请求头Authorization"):
+            print('获取请求头Authorization')
+        with allure.step("2、输入未注册过的新手机号"):
+            print('输入新的手机号')
+        with allure.step("3、点击send按键"):
+            sms_send_response = TestCase01.sendsms_request(self)
+            print('调用发送smsOTP')
+        with allure.step("4、执行断言"):
+            try:
+                assert 'OK' == sms_send_response['message']
+                logger.info("巴西市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(sms_send_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("巴西市场-测试用例：发送smsOTP接口断言失败，实际返回message：{}".format(sms_send_response['message']))
+                raise
+
+    @pytest.mark.run(order=15)
+    @pytest.mark.personInfoCase
+    # 用户故事
+    @allure.story('用户忘记支付密码发送短信场景')
+    # 用例等级
+    @allure.severity(allure.severity_level.CRITICAL)
+    # 用例描述
+    @allure.description('walletApp忘记支付密码发送短信场景')
+    # 测试步骤
+    @allure.step('测试用户忘记支付密码发送短信验证码')
+    # 用例标题
+    @allure.title('walletApp-Send SMS')
+    def test_forgotpaypwdsms_request(self):
+        with allure.step("1、获取请求头Authorization"):
+            print('获取请求头Authorization')
+        with allure.step("2、个人页-更新支付密码"):
+            print('触发forgot password')
+        with allure.step("3、点击forgot password按键"):
+            forgotpaypwdsms_response = TestCase01.forgotpaypwdsms_request(self)
+            print('调用发送smsOTP')
+        with allure.step("4、执行断言"):
+            try:
+                # The limit of verification codes sent has been reached.
+                assert 'success' == forgotpaypwdsms_response['message']
+                logger.info("巴西市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(
+                    forgotpaypwdsms_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("巴西市场-测试用例：发送smsOTP接口断言失败，实际返回message：{}".format(
+                    forgotpaypwdsms_response['message']))
+                raise
+
+    @pytest.mark.run(order=39)
+    @pytest.mark.personInfoCase
+    # 用户故事
+    @allure.story('用户触发短信后上报手机号')
+    # 用例等级
+    @allure.severity(allure.severity_level.CRITICAL)
+    # 用例描述
+    @allure.description('walletApp触发上报手机号')
+    # 测试步骤
+    @allure.step('测试更新用户手机号发送短信验证码')
+    # 用例标题
+    @allure.title('walletApp-report phone')
+    def test_reportphone_request(self):
+        with allure.step("1、获取请求头Authorization"):
+            print('获取请求头Authorization')
+        with allure.step("2、触发短信发送"):
+            print('触发短信发送')
+        with allure.step("3、点击report按键"):
+            reportphone_response = TestCase01.reportphone_request(self)
+            print('上报手机号')
+        with allure.step("4、执行断言"):
+            try:
+                assert 'OK' == reportphone_response['message']
+                logger.info(
+                    "巴西市场-测试用例：上报手机号接口-断言成功，返回message为: {}".format(reportphone_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception(
+                    "巴西市场-测试用例：上报手机号接口断言失败，实际返回message：{}".format(reportphone_response['message']))
+                raise
+
+@allure.feature("墨西哥市场-wallet客户端登录")
+class TestSuite8(object):
 
     @pytest.mark.run(order=22)
     # 用例标记名
@@ -714,7 +750,7 @@ class TestSuite7(object):
 
 
 @allure.feature("墨西哥市场wallet客户端银行账户相关")
-class TestSuite8(object):
+class TestSuite9(object):
 
     @pytest.mark.run(order=24)
     @pytest.mark.bankInfoCase
@@ -844,7 +880,7 @@ class TestSuite8(object):
                 raise
 
 @allure.feature("墨西哥市场-wallet客户端SPEI提现")
-class TestSuite9(object):
+class TestSuite10(object):
     @pytest.mark.run(order=27)
     @pytest.mark.withdrawCase
     # 用户故事
@@ -896,7 +932,7 @@ class TestSuite9(object):
             print('输入错误交易密码')
         with allure.step("5、执行断言"):
             try:
-                assert "The password or account is incorrect. Please try again." == spei_response['message']
+                assert "The payment password is incorrect." == spei_response['message']
                 logger.info(
                     "墨西哥市场-测试用例：SPEI账户提现接口-断言成功，返回message为: {}".format(
                         spei_response['message']))
@@ -909,7 +945,7 @@ class TestSuite9(object):
                 raise
 
 @allure.feature("墨西哥市场-wallet客户端维护个人信息")
-class TestSuite10(object):
+class TestSuite11(object):
     @pytest.mark.run(order=30)
     @pytest.mark.personInfoCase
     # 用户故事
@@ -970,68 +1006,6 @@ class TestSuite10(object):
                 logger.info("使用traceback输出异常: {}".format(s))
                 logger.exception("墨西哥市场-测试用例：添加用户信息接口-断言失败，实际返回message：{}".format(
                     add_profile_response['message']))
-                raise
-
-    @pytest.mark.run(order=32)
-    @pytest.mark.personInfoCase
-    # 用户故事
-    @allure.story('用户发送短信验证码场景(更新手机号)')
-    # 用例等级
-    @allure.severity(allure.severity_level.CRITICAL)
-    # 用例描述
-    @allure.description('walletApp更新个人手机号发送smsOTP场景')
-    # 测试步骤
-    @allure.step('测试更新用户手机号发送短信验证码')
-    # 用例标题
-    @allure.title('walletApp-Send SMS')
-    def test_sendsms_request_mexico(self):
-        with allure.step("1、获取请求头Authorization"):
-            print('获取请求头Authorization')
-        with allure.step("2、输入未注册过的新手机号"):
-            print('输入新的手机号')
-        with allure.step("3、点击send按键"):
-            sms_send_response = TestCase02.sendsms_request_mexico(self)
-            print('调用发送smsOTP')
-        with allure.step("4、执行断言"):
-            try:
-                assert 'OK' == sms_send_response['message']
-                logger.info("墨西哥市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(sms_send_response['message']))
-            except Exception as e:
-                s = traceback.format_exc()
-                logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("墨西哥市场-测试用例：发送smsOTP接口断言失败，实际返回message：{}".format(sms_send_response['message']))
-                raise
-
-    @pytest.mark.run(order=33)
-    @pytest.mark.personInfoCase
-    # 用户故事
-    @allure.story('用户忘记支付密码发送短信场景')
-    # 用例等级
-    @allure.severity(allure.severity_level.CRITICAL)
-    # 用例描述
-    @allure.description('walletApp忘记支付密码发送短信场景')
-    # 测试步骤
-    @allure.step('测试用户忘记支付密码发送短信验证码')
-    # 用例标题
-    @allure.title('walletApp-Send SMS')
-    def test_forgotpaypwdsms_request_mexico(self):
-        with allure.step("1、获取请求头Authorization"):
-            print('获取请求头Authorization')
-        with allure.step("2、个人页-更新支付密码"):
-            print('触发forgot password')
-        with allure.step("3、点击forgot password按键"):
-            forgotpaypwdsms_response = TestCase02.forgotpaypwdsms_request_mexico(self)
-            print('调用发送smsOTP')
-        with allure.step("4、执行断言"):
-            try:
-                assert 'success' == forgotpaypwdsms_response['message']
-                logger.info("墨西哥市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(
-                    forgotpaypwdsms_response['message']))
-            except Exception as e:
-                s = traceback.format_exc()
-                logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("墨西哥市场-测试用例：发送smsOTP接口断言失败，实际返回message：{}".format(
-                    forgotpaypwdsms_response['message']))
                 raise
 
     @pytest.mark.run(order=34)
@@ -1099,9 +1073,8 @@ class TestSuite10(object):
                 logger.exception("墨西哥市场-测试用例：重置支付密码接口-断言失败，实际返回message：{}".format(reset_wallet_pwd_response['message']))
                 raise
 
-
 @allure.feature("墨西哥市场-wallet客户端数据展示")
-class TestSuite11(object):
+class TestSuite12(object):
     @pytest.mark.run(order=36)
     @pytest.mark.checkInfoCase
     # 用户故事
@@ -1187,6 +1160,72 @@ class TestSuite11(object):
                     "墨西哥市场-测试用例：账单列表接口-断言失败，实际返回message：{}".format(transactionList_response['message']))
                 raise
 
+@allure.feature("墨西哥市场-wallet客户端短信相关")
+class TestSuite13(object):
+    @pytest.mark.run(order=32)
+    @pytest.mark.personInfoCase
+    # 用户故事
+    @allure.story('用户发送短信验证码场景(更新手机号)')
+    # 用例等级
+    @allure.severity(allure.severity_level.CRITICAL)
+    # 用例描述
+    @allure.description('walletApp更新个人手机号发送smsOTP场景')
+    # 测试步骤
+    @allure.step('测试更新用户手机号发送短信验证码')
+    # 用例标题
+    @allure.title('walletApp-Send SMS')
+    def test_sendsms_request_mexico(self):
+        with allure.step("1、获取请求头Authorization"):
+            print('获取请求头Authorization')
+        with allure.step("2、输入未注册过的新手机号"):
+            print('输入新的手机号')
+        with allure.step("3、点击send按键"):
+            sms_send_response = TestCase02.sendsms_request_mexico(self)
+            print('调用发送smsOTP')
+        with allure.step("4、执行断言"):
+            try:
+                assert 'OK' == sms_send_response['message']
+                logger.info("墨西哥市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(
+                    sms_send_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("墨西哥市场-测试用例：发送smsOTP接口断言失败，实际返回message：{}".format(
+                    sms_send_response['message']))
+                raise
+
+    @pytest.mark.run(order=33)
+    @pytest.mark.personInfoCase
+    # 用户故事
+    @allure.story('用户忘记支付密码发送短信场景')
+    # 用例等级
+    @allure.severity(allure.severity_level.CRITICAL)
+    # 用例描述
+    @allure.description('walletApp忘记支付密码发送短信场景')
+    # 测试步骤
+    @allure.step('测试用户忘记支付密码发送短信验证码')
+    # 用例标题
+    @allure.title('walletApp-Send SMS')
+    def test_forgotpaypwdsms_request_mexico(self):
+        with allure.step("1、获取请求头Authorization"):
+            print('获取请求头Authorization')
+        with allure.step("2、个人页-更新支付密码"):
+            print('触发forgot password')
+        with allure.step("3、点击forgot password按键"):
+            forgotpaypwdsms_response = TestCase02.forgotpaypwdsms_request_mexico(self)
+            print('调用发送smsOTP')
+        with allure.step("4、执行断言"):
+            try:
+                # # The limit of verification codes sent has been reached.
+                assert 'success' == forgotpaypwdsms_response['message']
+                logger.info("墨西哥市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(
+                    forgotpaypwdsms_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("墨西哥市场-测试用例：发送smsOTP接口断言失败，实际返回message：{}".format(
+                    forgotpaypwdsms_response['message']))
+                raise
 
 if __name__ == '__main__':
     pytest.main(['--alluredir', './report'])
