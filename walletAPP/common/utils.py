@@ -9,7 +9,7 @@ def brazil_logintimes_request():                                                
     url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['logintimes_path']
     headers = ConfigYaml().get_conf_headers()
     data = ConfigYaml().get_conf_data()['brazil_logintimes']['json']
-    r = requests.post(url, headers=headers, json=data)
+    r = requests.post(url, headers=headers, json=data, verify=False)
     res = r.text
     json_dict = json.loads(res)
     return json_dict
@@ -19,7 +19,7 @@ def brazil_loginpwd_request():                                                  
     url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['loginPwd_path']
     headers = ConfigYaml().get_conf_headers()
     data = ConfigYaml().get_conf_data()['brazil_loginPwd']['json']
-    r = requests.post(url, headers=headers, json=data)
+    r = requests.post(url, headers=headers, json=data, verify=False)
     res = r.text
     json_dict = json.loads(res)
     return json_dict
@@ -29,7 +29,7 @@ def mexico_logintimes_request():                                                
     url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['logintimes_path']
     headers = ConfigYaml().get_conf_headers()
     data = ConfigYaml().get_conf_data()['mexico_logintimes']['json']
-    r = requests.post(url, headers=headers, json=data)
+    r = requests.post(url, headers=headers, json=data, verify=False)
     res = r.text
     json_dict = json.loads(res)
     return json_dict
@@ -39,7 +39,7 @@ def mexico_loginpwd_request():                                                  
     url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['loginPwd_path']
     headers = ConfigYaml().get_conf_headers()
     data = ConfigYaml().get_conf_data()['mexico_loginPwd']['json']
-    r = requests.post(url, headers=headers, json=data)
+    r = requests.post(url, headers=headers, json=data, verify=False)
     res = r.text
     json_dict = json.loads(res)
     return json_dict
@@ -64,7 +64,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         payload = ConfigYaml().get_conf_data()['transactionList']['payload']
-        r = requests.get(url, headers=headers, params=payload)
+        r = requests.get(url, headers=headers, params=payload, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -75,7 +75,7 @@ class TestCase01(object):
         headers = {'authorization': authorization}
         payload = TestCase01.transactionlist_request(self)['data']['transactionList'][0]['transactionId']
         data = {"transactionId": payload}
-        r = requests.get(url, headers=headers, params=data)
+        r = requests.get(url, headers=headers, params=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -84,7 +84,7 @@ class TestCase01(object):
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['banklist_path']
         authorization = token1
         headers = {'authorization': authorization}
-        r = requests.get(url, headers=headers)
+        r = requests.get(url, headers=headers, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -93,7 +93,7 @@ class TestCase01(object):
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['profile_path']
         authorization = token1
         headers = {'authorization': authorization}
-        r = requests.get(url, headers=headers)
+        r = requests.get(url, headers=headers, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -103,7 +103,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['addprofile_brazil']['json']
-        r = requests.post(url, headers=headers, json=data)
+        r = requests.post(url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -112,7 +112,7 @@ class TestCase01(object):
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['good_path']
         authorization = token1
         headers = {'authorization': authorization}
-        r = requests.post(url, headers=headers)
+        r = requests.post(url, headers=headers, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -122,7 +122,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['channellist']['json']
-        r = requests.post(url, headers=headers, json=data)
+        r = requests.post(url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -132,7 +132,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['addbank_brazil']['json']
-        r = requests.post(url, headers=headers, json=data)
+        r = requests.post(url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -142,7 +142,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['brazil_bank']['json']
-        r = requests.post(url, headers=headers, json=data)
+        r = requests.post(url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -153,7 +153,7 @@ class TestCase01(object):
         headers = {'authorization': authorization}
         payload = TestCase01.banklist_request(self)['data'][0]['buid']
         data = {"buid": payload}
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -163,7 +163,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['saveprofile_brazil']['json1']
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -173,7 +173,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['sendsms_brazil']['json']
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -183,7 +183,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['forgotPayPwdSMS_brazil']['json']
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -192,7 +192,7 @@ class TestCase01(object):
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['reportPhone_path']
         params = ConfigYaml().get_conf_data()['reportPhone']['params']
         data = ConfigYaml().get_conf_data()['reportPhone']['json']
-        r = requests.post(url=url, params=params, json=data)
+        r = requests.post(url=url, params=params, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -202,7 +202,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         payload = ConfigYaml().get_conf_data()['brazil_channel']['payload1']
-        r = requests.get(url, headers=headers, params=payload)
+        r = requests.get(url, headers=headers, params=payload, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -211,7 +211,7 @@ class TestCase01(object):
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['paytimes_path']
         authorization = token1
         headers = {'authorization': authorization}
-        r = requests.post(url=url, headers=headers)
+        r = requests.post(url=url, headers=headers, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -221,7 +221,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['pixdirect']['fail']
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -231,7 +231,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['bankTransfer']['fail']
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -241,7 +241,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['resetwalletpwd_brazil']['json']
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -251,7 +251,7 @@ class TestCase01(object):
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['resetuserpwd_brazil']['json']
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -277,7 +277,7 @@ class TestCase02(object):
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['profile_path']
         authorization = token2
         headers = {'authorization': authorization}
-        r = requests.get(url, headers=headers)
+        r = requests.get(url, headers=headers, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -287,7 +287,7 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['addprofile_mexico']['json']
-        r = requests.post(url, headers=headers, json=data)
+        r = requests.post(url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -297,7 +297,7 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['channellist']['json']
-        r = requests.post(url, headers=headers, json=data)
+        r = requests.post(url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -307,7 +307,7 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         payload = ConfigYaml().get_conf_data()['transactionList']['payload']
-        r = requests.get(url, headers=headers, params=payload)
+        r = requests.get(url, headers=headers, params=payload, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -316,7 +316,7 @@ class TestCase02(object):
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['banklist_path']
         authorization = token2
         headers = {'authorization': authorization}
-        r = requests.get(url, headers=headers)
+        r = requests.get(url, headers=headers, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -326,7 +326,7 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['addbank_mexico']['json']
-        r = requests.post(url, headers=headers, json=data)
+        r = requests.post(url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -336,7 +336,7 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['mexico_bank']['json']
-        r = requests.post(url, headers=headers, json=data)
+        r = requests.post(url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -346,7 +346,7 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         payload = ConfigYaml().get_conf_data()['mexico_channel']['json']
-        r = requests.get(url, headers=headers, params=payload)
+        r = requests.get(url, headers=headers, params=payload, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -356,7 +356,7 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['SPEI_withdraw']['fail']
-        r = requests.post(url, headers=headers, json=data)
+        r = requests.post(url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -367,7 +367,7 @@ class TestCase02(object):
         headers = {'authorization': authorization}
         payload = TestCase02.banklist_request_mexico(self)['data'][0]['buid']
         data = {"buid": payload}
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -377,7 +377,7 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['saveprofile_mexico']['json1']
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -387,7 +387,7 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['sendsms_mexico']['json']
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -397,7 +397,7 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['forgotPayPwdSMS_mexico']['json']
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -407,7 +407,7 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['resetuserpwd_mexico']['json']
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict
@@ -417,7 +417,7 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['resetwalletpwd_mexico']['json']
-        r = requests.post(url=url, headers=headers, json=data)
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
         return json_dict

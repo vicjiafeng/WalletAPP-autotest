@@ -6,6 +6,7 @@ from .common.utils import *
 from .common.log_util import Logger
 
 # logger函数变量
+logging.captureWarnings(True)
 logger = Logger().get_log()
 
 #测试用例集合
