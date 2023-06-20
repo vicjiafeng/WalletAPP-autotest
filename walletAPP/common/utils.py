@@ -3,6 +3,10 @@
 import json
 import requests
 from .conf import ConfigYaml
+import urllib3
+
+# 强制取消基于证书验证的级别警告
+urllib3.disable_warnings()
 
 
 def brazil_logintimes_request():                                                            # 巴西登录错误次数限制
@@ -256,7 +260,68 @@ class TestCase01(object):
         json_dict = json.loads(res)
         return json_dict
 
+    def metacode_request_brazil(self):                                                      # 元数据列表
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['metaCode_path']
+        authorization = token1
+        headers = {'authorization': authorization}
+        data = ConfigYaml().get_conf_data()['metaCode_brazil']['json']
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
 
+    def withdrawrepair_request(self):                                                       # 订单修复
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['withdrawRepair_path']
+        authorization = token1
+        headers = {'authorization': authorization}
+        data = ConfigYaml().get_conf_data()['withdrawRepair']['json']
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
+    def identifysave_request(self):                                                       # 上传身份证明保存个人信息
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['identifySave_path']
+        authorization = token1
+        headers = {'authorization': authorization}
+        data = ConfigYaml().get_conf_data()['identifySave']['json']
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
+    def captchacode_request(self):                                                         # 验证码登录
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['captchaCode_path']
+        authorization = token1
+        headers = {'authorization': authorization}
+        data = ConfigYaml().get_conf_data()['captcha_code']['json']
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
+    def uploadfile_request(self):                                                           # 上传文件
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['uploadFile_path']
+        authorization = token1
+        headers = {'authorization': authorization}
+        files = {
+            'file': ('pic1.jpg', open('D:\pythonProject\walletAPP\images\pic1.jpg', 'rb'), 'image/png', {'Expires': '0'})
+        }
+        r = requests.post(url=url, headers=headers, files=files, verify=False)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
+    def reportphone_request(self):                                                           # 上报手机号
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['reportPhone_path']
+        authorization = token1
+        headers = {'authorization': authorization}
+        params = ConfigYaml().get_conf_data()['reportPhone']['params']
+        data = ConfigYaml().get_conf_data()['reportPhone']['json']
+        r = requests.post(url=url, headers=headers, params=params, json=data, verify=False)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
 '''
 # 注册需要短信验证码，需要捞日志，返回数据包含token，用于之后设置密码，填写个人信息
 def register_request(self):
@@ -417,6 +482,16 @@ class TestCase02(object):
         authorization = token2
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['resetwalletpwd_mexico']['json']
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
+    def metacode_request_mexico(self):                                                             #元数据列表
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['metaCode_path']
+        authorization = token2
+        headers = {'authorization': authorization}
+        data = ConfigYaml().get_conf_data()['metaCode_mexico']['json']
         r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
