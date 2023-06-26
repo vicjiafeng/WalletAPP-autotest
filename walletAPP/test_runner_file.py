@@ -835,21 +835,50 @@ class TestSuite9(object):
             print('调用kyc信息保存接口')
         with allure.step("3、执行断言"):
             try:
-                # # The limit of verification codes sent has been reached.
                 assert 'OK' == identifysave_response['message']
-                logger.info("巴西市场-测试用例：调用元数据接口-断言成功，返回message为: {}".format(
+                logger.info("巴西市场-测试用例：调用保存身份证明接口-断言成功，返回message为: {}".format(
                     identifysave_response['message']))
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
-                logger.exception("墨西哥市场-测试用例：调用元数据接口断言失败，实际返回message：{}".format(
+                logger.exception("巴西市场-测试用例：调用保存身份证明接口断言失败，实际返回message：{}".format(
                     identifysave_response['message']))
+                raise
+
+    @pytest.mark.run(order=28)
+    @pytest.mark.kycCase
+    # 用户故事
+    @allure.story('用户地址证明/资产证明保存场景')
+    # 用例等级
+    @allure.severity(allure.severity_level.BLOCKER)
+    # 用例描述
+    @allure.description('walletApp用户地址/资产证明信息保存场景')
+    # 测试步骤
+    @allure.step('测试客户端调用aml地址/资产证明保存接口')
+    # 用例标题
+    @allure.title('walletApp-aml address/fund save')
+    def test_amlsave_request(self):
+        with allure.step("1、获取请求头Authorization"):
+            print('获取请求头Authorization')
+        with allure.step("2、调用aml地址/资产证明保存接口"):
+            amlsave_response = TestCase01.amlsave_request(self)
+            print('调用aml地址/资产证明保存接口')
+        with allure.step("3、执行断言"):
+            try:
+                assert 'OK' == amlsave_response['message']
+                logger.info("巴西市场-测试用例：调用保存地址/资产证明接口-断言成功，返回message为: {}".format(
+                    amlsave_response['message']))
+            except Exception as e:
+                s = traceback.format_exc()
+                logger.info("使用traceback输出异常: {}".format(s))
+                logger.exception("巴西市场-测试用例：调用保存地址/资产证明接口断言失败，实际返回message：{}".format(
+                    amlsave_response['message']))
                 raise
 
 @allure.feature("墨西哥市场-wallet客户端登录")
 class TestSuite10(object):
 
-    @pytest.mark.run(order=28)
+    @pytest.mark.run(order=29)
     # 用例标记名
     @pytest.mark.loginCase
     # 用户故事
@@ -880,7 +909,7 @@ class TestSuite10(object):
                     "墨西哥市场-测试用例：登录次数统计接口-断言失败，实际返回message：{}".format(login_times_response['message']))
                 raise
 
-    @pytest.mark.run(order=29)
+    @pytest.mark.run(order=30)
     @pytest.mark.loginCase
     # 用户故事
     @allure.story('客户端登录场景')
@@ -910,7 +939,7 @@ class TestSuite10(object):
 
 @allure.feature("墨西哥市场-wallet客户端数据展示")
 class TestSuite11(object):
-    @pytest.mark.run(order=30)
+    @pytest.mark.run(order=31)
     @pytest.mark.displayInfoCase
     # 用户故事
     @allure.story('展示用户个人信息场景')
@@ -938,7 +967,7 @@ class TestSuite11(object):
                 logger.exception("墨西哥市场-测试用例：个人页接口-断言失败，实际返回message：{}".format(profile_response['message']))
                 raise
 
-    @pytest.mark.run(order=31)
+    @pytest.mark.run(order=32)
     @pytest.mark.displayInfoCase
     # 用户故事
     @allure.story('首页展示渠道列表页场景')
@@ -966,7 +995,7 @@ class TestSuite11(object):
                     "墨西哥市场-测试用例：渠道列表接口-断言失败，实际返回message：{}".format(channel_list_response['message']))
                 raise
 
-    @pytest.mark.run(order=32)
+    @pytest.mark.run(order=33)
     @pytest.mark.transactionCase
     # 用户故事
     @allure.story('用户查询账单场景')
@@ -997,7 +1026,7 @@ class TestSuite11(object):
 
 @allure.feature("墨西哥市场-wallet客户端维护个人信息")
 class TestSuite12(object):
-    @pytest.mark.run(order=33)
+    @pytest.mark.run(order=34)
     @pytest.mark.personInfoCase
     # 用户故事
     @allure.story('用户更新CEP或Email场景')
@@ -1027,7 +1056,7 @@ class TestSuite12(object):
                 logger.exception("墨西哥市场-测试用例：维护个人信息接口-断言失败，实际返回message：{}".format(save_profile_response['message']))
                 raise
 
-    @pytest.mark.run(order=34)
+    @pytest.mark.run(order=35)
     @pytest.mark.personInfoCase
     # 用户故事
     @allure.story('添加用户信息场景')
@@ -1059,7 +1088,7 @@ class TestSuite12(object):
                     add_profile_response['message']))
                 raise
 
-    @pytest.mark.run(order=35)
+    @pytest.mark.run(order=36)
     @pytest.mark.personInfoCase
     @allure.story('用户重置登录密码场景')
     # 用例等级
@@ -1092,7 +1121,7 @@ class TestSuite12(object):
                 logger.exception("墨西哥市场-测试用例：重置登录密码接口-断言失败，实际返回message：{}".format(reset_login_pwd_response['message']))
                 raise
 
-    @pytest.mark.run(order=36)
+    @pytest.mark.run(order=37)
     @pytest.mark.personInfoCase
     @allure.story('用户重置支付密码场景')
     # 用例等级
@@ -1127,7 +1156,7 @@ class TestSuite12(object):
 
 @allure.feature("墨西哥市场-wallet客户公共接口")
 class TestSuite13(object):
-    @pytest.mark.run(order=37)
+    @pytest.mark.run(order=38)
     @pytest.mark.commonCase
     # 用户故事
     @allure.story('调用元数据接口场景')
@@ -1160,7 +1189,7 @@ class TestSuite13(object):
 @allure.feature("墨西哥市场wallet客户端银行账户相关")
 class TestSuite14(object):
 
-    @pytest.mark.run(order=38)
+    @pytest.mark.run(order=39)
     @pytest.mark.bankInfoCase
     # 用户故事
     @allure.story('用户查看银行账户列表场景')
@@ -1190,7 +1219,7 @@ class TestSuite14(object):
                     "墨西哥市场-测试用例：银行账户列表接口-断言失败，实际返回message：{}".format(bank_list_response['message']))
                 raise
 
-    @pytest.mark.run(order=39)
+    @pytest.mark.run(order=40)
     @pytest.mark.bankInfoCase
     @allure.story('用户添加银行账户进入编辑页场景')
     # 用例等级
@@ -1221,7 +1250,7 @@ class TestSuite14(object):
                     "墨西哥市场-测试用例：进入银行账户编辑页接口-断言失败，实际返回message：{}".format(add_bank_response['message']))
                 raise
 
-    @pytest.mark.run(order=40)
+    @pytest.mark.run(order=41)
     @pytest.mark.bankInfoCase
     @allure.story('用户新增银行账户场景')
     # 用例等级
@@ -1254,7 +1283,7 @@ class TestSuite14(object):
                     confirm_bankinfo_response['message']))
                 raise
 
-    @pytest.mark.run(order=45)
+    @pytest.mark.run(order=46)
     @pytest.mark.bankInfoCase
     @allure.story('用户删除银行账户场景')
     # 用例等级
@@ -1289,7 +1318,7 @@ class TestSuite14(object):
 
 @allure.feature("墨西哥市场-wallet客户端短信相关")
 class TestSuite15(object):
-    @pytest.mark.run(order=41)
+    @pytest.mark.run(order=42)
     @pytest.mark.smsCase
     # 用户故事
     @allure.story('用户发送短信验证码场景(更新手机号)')
@@ -1321,7 +1350,7 @@ class TestSuite15(object):
                     sms_send_response['message']))
                 raise
 
-    @pytest.mark.run(order=42)
+    @pytest.mark.run(order=43)
     @pytest.mark.smsCase
     # 用户故事
     @allure.story('用户忘记支付密码发送短信场景')
@@ -1356,7 +1385,7 @@ class TestSuite15(object):
 
 @allure.feature("墨西哥市场-wallet客户端SPEI提现")
 class TestSuite16(object):
-    @pytest.mark.run(order=43)
+    @pytest.mark.run(order=44)
     @pytest.mark.withdrawCase
     # 用户故事
     @allure.story('首页选择SPEI渠道场景')
@@ -1385,7 +1414,7 @@ class TestSuite16(object):
                     "墨西哥市场-测试用例：选择提现渠道接口-断言失败，实际返回message：{}".format(channel_response['message']))
                 raise
 
-    @pytest.mark.run(order=44)
+    @pytest.mark.run(order=45)
     @pytest.mark.withdrawCase
     # 用户故事
     @allure.story('用户进行SPEI账户提现场景')

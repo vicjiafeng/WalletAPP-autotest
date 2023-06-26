@@ -5,7 +5,7 @@ import requests
 from .conf import ConfigYaml
 import urllib3
 
-# 强制取消基于证书验证的级别警告
+# 强制取消基于证书验证级别的警告
 urllib3.disable_warnings()
 
 
@@ -280,11 +280,21 @@ class TestCase01(object):
         json_dict = json.loads(res)
         return json_dict
 
-    def identifysave_request(self):                                                       # 上传身份证明保存个人信息
+    def identifysave_request(self):                                                       # 保存身份证明
         url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['identifySave_path']
         authorization = token1
         headers = {'authorization': authorization}
         data = ConfigYaml().get_conf_data()['identifySave']['json']
+        r = requests.post(url=url, headers=headers, json=data, verify=False)
+        res = r.text
+        json_dict = json.loads(res)
+        return json_dict
+
+    def amlsave_request(self):                                                              # 保存地址证明/资产证明
+        url = ConfigYaml().get_conf_url() + ConfigYaml().get_conf_path()['amlSave_path']
+        authorization = token1
+        headers = {'authorization': authorization}
+        data = ConfigYaml().get_conf_data()['amlSave']['json']
         r = requests.post(url=url, headers=headers, json=data, verify=False)
         res = r.text
         json_dict = json.loads(res)
