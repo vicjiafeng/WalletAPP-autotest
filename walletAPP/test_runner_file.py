@@ -1256,7 +1256,7 @@ class TestSuite12(object):
             try:
                 assert 'success' == reset_wallet_pwd_response['message']
                 logger.info("墨西哥市场-测试用例：重置支付密码接口-断言成功，返回message为: {}".format(reset_wallet_pwd_response['message']))
-            except (requests.exceptions.ConnectionError as e:
+            except requests.exceptions.ConnectionError as e:
                 print(e)
                 raise
             except Exception as e:
