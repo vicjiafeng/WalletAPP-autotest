@@ -36,6 +36,9 @@ class TestSuite1(object):
             try:
                 assert 'success' == login_times_response['message']
                 logger.info("巴西市场-测试用例：登录次数统计接口-断言成功，返回message为: {}".format(login_times_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -64,6 +67,9 @@ class TestSuite1(object):
             try:
                 assert 'success' == loginpwd_response['message']
                 logger.info("巴西市场-测试用例：登录接口-断言成功，返回message为: {}".format(loginpwd_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -94,6 +100,9 @@ class TestSuite1(object):
                 assert 'success' == captchacode_response['message']
                 logger.info("巴西市场-测试用例：验证码登录接口-断言成功，返回message为: {}".format(
                     captchacode_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -125,6 +134,9 @@ class TestSuite2(object):
             try:
                 assert 'success' == profile_response['message']
                 logger.info("巴西市场-测试用例：个人页接口-断言成功，返回message为: {}".format(profile_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -153,6 +165,9 @@ class TestSuite2(object):
             try:
                 assert 'success' == good_response['message']
                 logger.info("巴西市场-测试用例：商城列表接口-断言成功，返回message为: {}".format(good_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -180,6 +195,9 @@ class TestSuite2(object):
             try:
                 assert 'success' == channel_list_response['message']
                 logger.info("巴西市场-测试用例：渠道列表接口-断言成功，返回message为: {}".format(channel_list_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -210,6 +228,9 @@ class TestSuite3(object):
             try:
                 assert 'success' == transactionlist_response['message']
                 logger.info("巴西市场-测试用例：账单列表接口-断言成功，返回message为: {}".format(transactionlist_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -240,6 +261,9 @@ class TestSuite3(object):
             try:
                 assert 'success' == transaction_detail_response['message']
                 logger.info("巴西市场-测试用例：账单详情接口-断言成功，返回message为: {}".format(transaction_detail_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -270,6 +294,9 @@ class TestSuite4(object):
             try:
                 assert 'success' == bank_list_response['message']
                 logger.info("巴西市场-测试用例：银行账户列表接口-断言成功，返回message为: {}".format(bank_list_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -299,6 +326,9 @@ class TestSuite4(object):
             try:
                 assert 'OK' == add_bank_response['message']
                 logger.info("巴西市场-测试用例：进入银行账户编辑页接口-断言成功，返回message为: {}".format(add_bank_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -330,6 +360,9 @@ class TestSuite4(object):
             try:
                 assert 'success' == confirm_bankinfo_response['message']
                 logger.info("巴西市场-测试用例：添加银行账户接口-断言成功，返回message为: {}".format(confirm_bankinfo_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -361,6 +394,9 @@ class TestSuite4(object):
             try:
                 assert 'success' == delete_bankinfo_response['message']
                 logger.info("巴西市场-测试用例：删除银行账户接口-断言成功，返回message为: {}".format(delete_bankinfo_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -393,6 +429,9 @@ class TestSuite5(object):
             try:
                 assert 'OK' == save_profile_response['message']
                 logger.info("巴西市场-测试用例：维护个人信息接口-断言成功，返回message为: {}".format(save_profile_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -424,6 +463,9 @@ class TestSuite5(object):
                 assert 'success' == add_profile_response['message']
                 logger.info("巴西市场-测试用例：添加用户信息接口-断言成功，返回message为: {}".format(
                     add_profile_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -458,6 +500,9 @@ class TestSuite5(object):
             try:
                 assert 'success' == reset_login_pwd_response['message']
                 logger.info("巴西市场-测试用例：重置登录密码接口-断言成功，返回message为: {}".format(reset_login_pwd_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -491,6 +536,9 @@ class TestSuite5(object):
             try:
                 assert 'success' == reset_wallet_pwd_response['message']
                 logger.info("巴西市场-测试用例：重置支付密码接口-断言成功，返回message为: {}".format(reset_wallet_pwd_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -521,6 +569,9 @@ class TestSuite6(object):
             try:
                 assert 'success' == channel_response['message']
                 logger.info("巴西市场-测试用例：选择提现渠道接口-断言成功，返回message为: {}".format(channel_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -549,6 +600,9 @@ class TestSuite6(object):
             try:
                 assert 'success' == pay_times_response['message']
                 logger.info("巴西市场-测试用例：验证交易次数接口-断言成功，返回message为: {}".format(pay_times_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -581,6 +635,9 @@ class TestSuite6(object):
             try:
                 assert "The password or account is incorrect. Please try again." == pix_direct_response['message']
                 logger.info("巴西市场-测试用例：pix提现接口-断言成功，返回message为: {}".format(pix_direct_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -612,6 +669,9 @@ class TestSuite6(object):
                 assert "The password or account is incorrect. Please try again." == banktransfer_response['message']
                 logger.info(
                     "巴西市场-测试用例：银行账户提现接口-断言成功，返回message为: {}".format(banktransfer_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -643,6 +703,9 @@ class TestSuite6(object):
                 logger.info(
                     "巴西市场-测试用例：订单修复接口-断言成功，返回message为: {}".format(
                         withdrawrepair_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -677,6 +740,9 @@ class TestSuite7(object):
             try:
                 assert 'OK' == sms_send_response['message']
                 logger.info("巴西市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(sms_send_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -709,6 +775,9 @@ class TestSuite7(object):
                 assert 'success' == forgotpaypwdsms_response['message']
                 logger.info("巴西市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(
                     forgotpaypwdsms_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -741,6 +810,9 @@ class TestSuite7(object):
                 assert 'OK' == reportphone_response['message']
                 logger.info(
                     "巴西市场-测试用例：上报手机号接口-断言成功，返回message为: {}".format(reportphone_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -774,6 +846,9 @@ class TestSuite8(object):
                 assert 'OK' == metacode_response['message']
                 logger.info("巴西市场-测试用例：调用元数据接口-断言成功，返回message为: {}".format(
                     metacode_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -805,6 +880,9 @@ class TestSuite8(object):
                 logger.info(
                     "巴西市场-测试用例：上传文件接口-断言成功，返回message为: {}".format(
                         uploadfile_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -838,6 +916,9 @@ class TestSuite9(object):
                 assert 'OK' == identifysave_response['message']
                 logger.info("巴西市场-测试用例：调用保存身份证明接口-断言成功，返回message为: {}".format(
                     identifysave_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -868,6 +949,9 @@ class TestSuite9(object):
                 assert 'OK' == amlsave_response['message']
                 logger.info("巴西市场-测试用例：调用保存地址/资产证明接口-断言成功，返回message为: {}".format(
                     amlsave_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -902,6 +986,9 @@ class TestSuite10(object):
                 assert 'success' == login_times_response['message']
                 logger.info(
                     "墨西哥市场-测试用例：登录次数统计接口-断言成功，返回message为: {}".format(login_times_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -931,6 +1018,9 @@ class TestSuite10(object):
             try:
                 assert 'success' == loginpwd_response['message']
                 logger.info("墨西哥市场-测试用例：登录接口-断言成功，返回message为: {}".format(loginpwd_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -961,6 +1051,9 @@ class TestSuite11(object):
             try:
                 assert 'success' == profile_response['message']
                 logger.info("墨西哥市场-测试用例：个人页接口-断言成功，返回message为: {}".format(profile_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -988,6 +1081,9 @@ class TestSuite11(object):
             try:
                 assert 'success' == channel_list_response['message']
                 logger.info("墨西哥市场-测试用例：渠道列表接口-断言成功，返回message为: {}".format(channel_list_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1017,6 +1113,9 @@ class TestSuite11(object):
             try:
                 assert 'success' == transactionList_response['message']
                 logger.info("墨西哥市场-测试用例：账单列表接口-断言成功，返回message为: {}".format(transactionList_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1050,6 +1149,9 @@ class TestSuite12(object):
             try:
                 assert 'OK' == save_profile_response['message']
                 logger.info("墨西哥市场-测试用例：维护个人信息接口-断言成功，返回message为: {}".format(save_profile_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1081,6 +1183,9 @@ class TestSuite12(object):
                 assert 'success' == add_profile_response['message']
                 logger.info("墨西哥市场-测试用例：添加用户信息接口-断言成功，返回message为: {}".format(
                     add_profile_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1115,6 +1220,9 @@ class TestSuite12(object):
             try:
                 assert 'success' == reset_login_pwd_response['message']
                 logger.info("墨西哥市场-测试用例：重置登录密码接口-断言成功，返回message为: {}".format(reset_login_pwd_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1148,6 +1256,9 @@ class TestSuite12(object):
             try:
                 assert 'success' == reset_wallet_pwd_response['message']
                 logger.info("墨西哥市场-测试用例：重置支付密码接口-断言成功，返回message为: {}".format(reset_wallet_pwd_response['message']))
+            except (requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1179,6 +1290,9 @@ class TestSuite13(object):
                 assert 'OK' == metacode_response['message']
                 logger.info("墨西哥市场-测试用例：调用元数据接口-断言成功，返回message为: {}".format(
                     metacode_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1212,6 +1326,9 @@ class TestSuite14(object):
                 assert 'success' == bank_list_response['message']
                 logger.info(
                     "墨西哥市场-测试用例：银行账户列表接口-断言成功，返回message为: {}".format(bank_list_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1243,6 +1360,9 @@ class TestSuite14(object):
                 assert 'OK' == add_bank_response['message']
                 logger.info(
                     "墨西哥市场-测试用例：进入银行账户编辑页接口-断言成功，返回message为: {}".format(add_bank_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1276,6 +1396,9 @@ class TestSuite14(object):
                 assert 'success' == confirm_bankinfo_response['message']
                 logger.info(
                     "墨西哥市场-测试用例：添加银行账户接口-断言成功，返回message为: {}".format(confirm_bankinfo_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1309,6 +1432,9 @@ class TestSuite14(object):
                 assert 'success' == delete_bankinfo_response['message']
                 logger.info(
                     "墨西哥市场-测试用例：删除银行账户接口-断言成功，返回message为: {}".format(delete_bankinfo_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1343,6 +1469,9 @@ class TestSuite15(object):
                 assert 'OK' == sms_send_response['message']
                 logger.info("墨西哥市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(
                     sms_send_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1376,6 +1505,9 @@ class TestSuite15(object):
                 assert 'success' == forgotpaypwdsms_response['message']
                 logger.info("墨西哥市场-测试用例：发送smsOTP接口-断言成功，返回message为: {}".format(
                     forgotpaypwdsms_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1407,6 +1539,9 @@ class TestSuite16(object):
             try:
                 assert 'success' == channel_response['message']
                 logger.info("墨西哥市场-测试用例：选择提现渠道接口-断言成功，返回message为: {}".format(channel_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
@@ -1440,6 +1575,9 @@ class TestSuite16(object):
                 logger.info(
                     "墨西哥市场-测试用例：SPEI账户提现接口-断言成功，返回message为: {}".format(
                         spei_response['message']))
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                raise
             except Exception as e:
                 s = traceback.format_exc()
                 logger.info("使用traceback输出异常: {}".format(s))
